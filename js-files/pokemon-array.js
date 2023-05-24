@@ -1,15 +1,16 @@
 let pokemons = ["Bulbasaur",
     "Ivysaur",
-    "Venusaur",
+    "Venusaur"
+]
+let later = [
     "Charmander",
     "Charmeleon",
     "Charizard",
     "Squirtle",
     "Wartortle",
     "Blastoise",
-    "Caterpie"
-]
-let later = [    "Metapod",
+    "Caterpie",
+    "Metapod",
     "Butterfree",
     "Weedle",
     "Kakuna",

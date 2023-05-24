@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fonts -->
+    <!-- Source Sans Pro -->
+    <link rel="stylesheet" href="css-files/source-sans-pro.css">
+    <!-- Pokemon -->
+    <link rel="stylesheet" href="css-files/pokemon.css">
 
     <!-- Integrations -->
     <!-- Style -->
@@ -12,6 +16,7 @@
 
     <!-- Java Script -->
     <script src="js-files/load-pokemon.js"></script>
+    <script src="js-files/pokemon-array.js"></script>
 
     <!-- Favicon and Title -->
     <link rel="shortcut icon" href="img/icons/pokedex.png" type="image/x-icon">
@@ -32,7 +37,20 @@
         }
     </style>
 </head>
-<body onload="loadPokemon()">
+<body onload="loadPokedex()">
+    <div id="pokedex-BG">
+        <navbar class="navinterface">
+            <div class="searcharea">
+                <h1 class="pokedex-title1">Pokedex</h1>
+                <h1 class="pokedex-title2">Pokedex</h1>
+                <span class="searchtext font-source-sans-pro">What Pokémon are<br>you looking for?</span>
+                <div class="search-input">
+                    <input id="searchfild" class="font-source-sans-pro" type="text" placeholder="Search Pokemon, Attriput, etc">
+                    <img src="img/icons/poke-search.png" class="search-icon">
+                </div>
+            </div>
+        </navbar>
+    </div>
     
 </body>
 </html>
