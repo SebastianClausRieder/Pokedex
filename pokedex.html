@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +9,12 @@
     <!-- Source Sans Pro -->
     <link rel="stylesheet" href="css-files/source-sans-pro.css">
     <!-- Pokemon -->
-    <link rel="stylesheet" href="css-files/pokemon.css">
+    <link rel="stylesheet" href="css-files/font-pokemon.css">
 
     <!-- Integrations -->
     <!-- Style -->
-    <link rel="stylesheet" href="css-files/pokedex.css">
+    <link rel="stylesheet" href="css-files/pokedex-nav.css">
+    <link rel="stylesheet" href="css-files/pokedex-main-area.css">
 
     <!-- Java Script -->
     <script src="js-files/load-pokemon.js"></script>
@@ -21,11 +23,35 @@
     <!-- Favicon and Title -->
     <link rel="shortcut icon" href="img/icons/pokedex.png" type="image/x-icon">
     <title>Pokedex</title>
-    
+
     <!-- Default Style -->
     <style>
         body {
             margin: 0;
+        }
+
+        /* Scrollbalcken */
+        /* width */
+        ::-webkit-scrollbar {
+            background-color: #ffffff;
+            width: 10px;
+            height: 0px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #ff5555b8;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            box-shadow: 0px 0.2px 5px 2px #C55A11;
         }
 
         .d-none {
@@ -37,20 +63,27 @@
         }
     </style>
 </head>
+
 <body onload="loadPokedex()">
     <div id="pokedex-BG">
         <navbar class="navinterface">
             <div class="searcharea">
-                <h1 class="pokedex-title1">Pokedex</h1>
-                <h1 class="pokedex-title2">Pokedex</h1>
+                <h1 class="pokedex-title1">Pokédex</h1>
+                <h1 class="pokedex-title2">Pokédex</h1>
                 <span class="searchtext font-source-sans-pro">What Pokémon are<br>you looking for?</span>
                 <div class="search-input">
-                    <input id="searchfild" class="font-source-sans-pro" type="text" placeholder="Search Pokemon, Attriput, etc">
+                    <input id="searchfild" class="font-source-sans-pro" type="text"
+                        placeholder="Search Pokémon, Types, etc">
                     <img src="img/icons/poke-search.png" class="search-icon">
                 </div>
             </div>
         </navbar>
+        <div class="pokedex-main-area">
+            <h2 class="title font-source-sans-pro">Pokédex</h2>
+            <div id="pokemonArea"></div>
+        </div>
     </div>
-    
+
 </body>
+
 </html>
