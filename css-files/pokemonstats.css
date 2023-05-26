@@ -7,8 +7,272 @@
     bottom: 0;
     left: 0;
     display: none;
-    background-image: url(../img/bg-white.png);
     background-size: cover;
     background-position: right top;
+    justify-content: center;
+    align-items: center;
+}
 
+.status-area {
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(123, 194, 229, 0.3);
+    border-radius: 15px;
+}
+
+/* Left Side */
+
+.left-side {
+    width: 50%;
+    height: 100%;
+    background-color: #f14343;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Above */
+
+.above {
+    width: 100%;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    margin-top: 8px;
+}
+
+.cam-contain {
+    width: auto;
+    height: 125px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cam {
+    width: 75px;
+    height: 75px;
+    border: 5px solid white;
+    border-radius: 100px;
+    background-color: #7BC1E5;
+    margin-left: 20px;
+}
+
+.cam-reflection {
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+    background-color: #aec8d5;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.leds {
+    width: 100px;
+    height: 120px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.led-r {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 100px;
+    background-color: #c11717;
+}
+
+.led-y {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 100px;
+    background-color: #eeff00;
+}
+
+.led-g {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 100px;
+    background-color: #19af1c;
+}
+
+.back-button {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.off-button {
+    width: 75px;
+    cursor: pointer;
+}
+
+/* Center */
+
+.center {
+    width: 100%;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-border {
+    width: 650px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    border: 2px solid black;
+    border-radius: 15px 15px 15px 75px;
+    background-color: rgb(176, 176, 176);
+}
+
+.display-leds {
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display-led {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 100px;
+    background-color: #c11717;
+}
+
+#display {
+    width: 450px;
+    height: 450px;
+    background-color: #9bcee8;
+    background-position: center;
+    border: 3px solid black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectet-pokemon {
+    width: 400px;
+}
+
+.display-below {
+    width: 70%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display-below-led {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 100px;
+    background-color: #c11717;
+}
+
+.display-speaker {
+    width: 50px;
+}
+
+/* Below */
+
+.below {
+    width: 90%;
+    height: 200px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-circle-button {
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 100px;
+    background-color: #1b1717;    
+}
+
+.center-contain {
+    width: 50%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.button-contain {
+    width: 90%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-line-button {
+    width: 75px;
+    height: 15px;
+    background-color: #1b1717;
+    border-radius: 100px;
+}
+
+.right-line-button {
+    width: 75px;
+    height: 15px;
+    background-color: aqua;
+    border-radius: 100px;
+}
+
+#green-display {
+    width: 95%;
+    height: 125px;
+    background-color: #21922b;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gd-poke-name {
+    display: block;
+    font-size: 35px;
+    font-weight: 700;
+    color: #ffdd00;
+}
+
+.gd-poke-name:first-letter {    
+    text-transform: uppercase;
+}
+
+.control-pad-image {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-control-pad {
+    width: 175px;
 }

@@ -152,15 +152,18 @@ document.addEventListener("DOMContentLoaded", function () {
 let mode = 'light';
 
 function nightDay() {
-    let nightDayMode = document.getElementById('pokedex-BG');
+    let nightDayMode1 = document.getElementById('pokedex-BG');
+    let nightDayMode2 = document.getElementById('pokemonStats');
     let fontColor = document.getElementById('title');
 
     if (mode == 'light') {
-        nightDayMode.style = 'background-image: url(../img/bg-darkmode.png)';
+        nightDayMode1.style = 'background-image: url(../img/bg-darkmode.png)';
+        nightDayMode2.style = 'background-image: url(../img/bg-darkmode.png)';
         fontColor.classList.add('font-color-white');
         mode = 'dark';
     } else {
-        nightDayMode.style = 'background-image: url(../img/bg-lightmode.png)';
+        nightDayMode1.style = 'background-image: url(../img/bg-lightmode.png)';
+        nightDayMode2.style = 'background-image: url(../img/bg-lightmode.png)';
         fontColor.classList.remove('font-color-white');
         mode = 'light'
     }

@@ -84,17 +84,66 @@
             </div>
         </navbar>
         <div class="pokedex-main-area">
-            <div class="dark-light-mode">
-                <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
-                <div class="btn-container" onclick="nightDay()">
-                    <i class="fas fa-circle"></i>
-                </div>
-            </div>
             <h2 id="title" class="title font-source-sans-pro">Pokédex</h2>
             <div id="pokemonArea"></div>
         </div>
     </div>
-    <div id="pokemonStats" class="pokemonStats"></div>
+    <div id="pokemonStats" class="pokemonStats" style="background-image: url(../img/bg-lightmode.png);">
+        <div class="status-area">
+            <div class="left-side">
+                <div class="above">
+                    <div class="cam-contain">
+                        <div class="cam">
+                            <div class="cam-reflection"></div>
+                        </div>
+                        <div class="leds">
+                            <div class="led-r"></div>
+                            <div class="led-y"></div>
+                            <div class="led-g"></div>
+                        </div>
+                    </div>
+                    <div class="back-button">
+                        <img src="img/icons/off-button.png" class="off-button" onclick="goBack()">
+                    </div>
+                </div>
+                <div class="center">
+                    <div class="display-border">
+                        <div class="display-leds">
+                            <div class="display-led"></div>
+                            <div class="display-led"></div>
+                        </div>
+                        <div id="display">
+
+                        </div>
+                        <div class="display-below">
+                            <div class="display-below-led"></div>
+                            <img src="img/icons/speaker.png" class="display-speaker">
+                        </div>
+                    </div>
+                </div>
+                <div class="below">
+                    <div class="left-circle-button"></div>
+                    <div class="center-contain">
+                        <div class="button-contain">
+                            <div class="left-line-button"></div>
+                            <div class="right-line-button"></div>
+                        </div>
+                        <div id="green-display"></div>
+                    </div>
+                    <div class="control-pad-image">
+                        <img src="img/icons/control-pad.png" class="right-control-pad">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dark-light-mode">
+        <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
+        <div class="btn-container" onclick="nightDay()">
+            <i class="fas fa-circle"></i>
+        </div>
+    </div>
 </body>
 
 </html>
