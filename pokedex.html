@@ -15,10 +15,11 @@
     <!-- Style -->
     <link rel="stylesheet" href="css-files/pokedex-nav.css">
     <link rel="stylesheet" href="css-files/pokedex-main-area.css">
+    <link rel="stylesheet" href="css-files/pokemonstats.css">
 
     <!-- Java Script -->
     <script src="js-files/load-pokemon.js"></script>
-    <script src="js-files/pokemon-array.js"></script>
+    <script src="js-files/show-pokemon.js"></script>
 
     <!-- Favicon and Title -->
     <link rel="shortcut icon" href="img/icons/pokedex.png" type="image/x-icon">
@@ -61,11 +62,15 @@
         .d-show {
             display: flex;
         }
+
+        .font-color-white {
+            color: white;
+        }
     </style>
 </head>
 
 <body onload="loadPokedex()">
-    <div id="pokedex-BG">
+    <div id="pokedex-BG" style="background-image: url(../img/bg-lightmode.png);">
         <navbar class="navinterface">
             <div class="searcharea">
                 <h1 class="pokedex-title1">Pokédex</h1>
@@ -73,17 +78,23 @@
                 <span class="searchtext font-source-sans-pro">What Pokémon are<br>you looking for?</span>
                 <div class="search-input">
                     <input id="searchfild" class="font-source-sans-pro" type="text"
-                        placeholder="Search Pokémon, Types, etc">
+                        placeholder="Search Pokémon, Types, ID, etc">
                     <img src="img/icons/poke-search.png" class="search-icon">
                 </div>
             </div>
         </navbar>
         <div class="pokedex-main-area">
-            <h2 class="title font-source-sans-pro">Pokédex</h2>
+            <div class="dark-light-mode">
+                <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
+                <div class="btn-container" onclick="nightDay()">
+                    <i class="fas fa-circle"></i>
+                </div>
+            </div>
+            <h2 id="title" class="title font-source-sans-pro">Pokédex</h2>
             <div id="pokemonArea"></div>
         </div>
     </div>
-
+    <div id="pokemonStats" class="pokemonStats"></div>
 </body>
 
 </html>

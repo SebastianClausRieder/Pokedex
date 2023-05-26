@@ -9,7 +9,7 @@ let pokemonTypeTWO;
 // Functions
 
 async function loadPokedex() {
-    for (let p = 1; p < 151; p++) { // 1011
+    for (let p = 1; p < 51; p++) { // 1011
         const pokemon = p;
         await loadPokemon(pokemon);
     }
@@ -33,7 +33,7 @@ function renderPokemonCard() {
 function pokeCardTemp() {
     formatiereUndZeigeZahl();
     return /*html */ `
-    <div class="pokemon-card font-source-sans-pro" style="background-image: url(${pokemonCardBG});" onclick="showPokemon()">
+    <div class="pokemon-card font-source-sans-pro" style="background-image: url(${pokemonCardBG});" onclick="showPokemon(${correntPokemon['id']})">
         <div class="name-id">
             <span class="poke-name">${correntPokemon['forms'][0]['name']}</span>
             <span class="poke-id">#${pokemonID}</span>
@@ -68,9 +68,9 @@ function pokemonTypeAvailable() {
 
     if (correntPokemon['types'][1] !== undefined) {
         if (correntPokemon['types'][1]['type'] !== undefined) {
-          pokemonTypeTWO = correntPokemon['types'][1]['type']['name'];
+            pokemonTypeTWO = correntPokemon['types'][1]['type']['name'];
         }
-      } else {
+    } else {
         pokemonTypeTWO = '';
     }
 }
@@ -133,5 +133,35 @@ function pokemonType() {
     }
     if (correntType == 'water') {
         pokemonCardBG = '../img/bg-water.png'
+    }
+}
+
+// Dark and Light Mode
+
+document.addEventListener("DOMContentLoaded", function () {
+    const btn1_ctn = document.getElementsByClassName("btn-container")[0];
+    const one = document.querySelector(".fas");
+    btn1_ctn.addEventListener("click", () => {
+        one.classList.toggle("fa-circle");
+        one.classList.toggle("fa-moon");
+        one.classList.toggle("active");
+        btn1_ctn.classList.toggle("changeBg");
+    });
+});
+
+let mode = 'light';
+
+function nightDay() {
+    let nightDayMode = document.getElementById('pokedex-BG');
+    let fontColor = document.getElementById('title');
+
+    if (mode == 'light') {
+        nightDayMode.style = 'background-image: url(../img/bg-darkmode.png)';
+        fontColor.classList.add('font-color-white');
+        mode = 'dark';
+    } else {
+        nightDayMode.style = 'background-image: url(../img/bg-lightmode.png)';
+        fontColor.classList.remove('font-color-white');
+        mode = 'light'
     }
 }
