@@ -70,7 +70,7 @@
 </head>
 
 <body onload="loadPokedex()">
-    <div id="pokedex-BG" style="background-image: url(../img/bg-lightmode.png);">
+    <div id="pokedex-BG" style="background-image: url(img/bg-lightmode.png);">
         <navbar class="navinterface">
             <div class="searcharea">
                 <h1 class="pokedex-title1">Pokédex</h1>
@@ -128,7 +128,9 @@
                             <div class="left-line-button"></div>
                             <div class="right-line-button"></div>
                         </div>
-                        <div id="green-display"></div>
+                        <div class="green-display">
+                            <p><span id="pokemonGDName" class="font-source-sans-pro"></span></p>
+                        </div>
                     </div>
                     <div class="control-pad-image">
                         <img src="img/icons/control-pad.png" class="right-control-pad">

@@ -25,6 +25,8 @@
     overflow: scroll;
 }
 
+/* Pokedex Cards */
+
 .pokemon-card {
     width: 175px;
     height: 125px;

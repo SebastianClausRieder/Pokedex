@@ -1,4 +1,4 @@
-// Global Variables
+// Global Variables for load Pokemons
 
 let correntPokemon;
 let pokemonID;
@@ -6,7 +6,7 @@ let pokemonCardBG;
 let pokemonTypeONE;
 let pokemonTypeTWO;
 
-// Functions
+// Functions for load Pokemons
 
 async function loadPokedex() {
     for (let p = 1; p < 51; p++) { // 1011
@@ -81,58 +81,58 @@ function pokemonType() {
     let correntType = correntPokemon['types'][0]['type']['name'];
 
     if (correntType == 'bug') {
-        pokemonCardBG = '../img/bg-bug.png'
+        pokemonCardBG = 'img/bg-bug.png'
     }
     if (correntType == 'dark') {
-        pokemonCardBG = '../img/bg-dark.png'
+        pokemonCardBG = 'img/bg-dark.png'
     }
     if (correntType == 'dragon') {
         pokemonCardBG = '../img/bg-dragon.png'
     }
     if (correntType == 'electric') {
-        pokemonCardBG = '../img/bg-electric.png'
+        pokemonCardBG = 'img/bg-electric.png'
     }
     if (correntType == 'fairy') {
-        pokemonCardBG = '../img/bg-fairy.png'
+        pokemonCardBG = 'img/bg-fairy.png'
     }
     if (correntType == 'fighting') {
-        pokemonCardBG = '../img/bg-fighting.png'
+        pokemonCardBG = 'img/bg-fighting.png'
     }
     if (correntType == 'fire') {
-        pokemonCardBG = '../img/bg-fire.png'
+        pokemonCardBG = 'img/bg-fire.png'
     }
     if (correntType == 'flying') {
-        pokemonCardBG = '../img/bg-flying.png'
+        pokemonCardBG = 'img/bg-flying.png'
     }
     if (correntType == 'ghost') {
-        pokemonCardBG = '../img/bg-ghost.png'
+        pokemonCardBG = 'img/bg-ghost.png'
     }
     if (correntType == 'grass') {
         pokemonCardBG = 'img/bg-grass.png'
     }
     if (correntType == 'ground') {
-        pokemonCardBG = '../img/bg-ground.png'
+        pokemonCardBG = 'img/bg-ground.png'
     }
     if (correntType == 'ice') {
-        pokemonCardBG = '../img/bg-ice.png'
+        pokemonCardBG = 'img/bg-ice.png'
     }
     if (correntType == 'normal') {
-        pokemonCardBG = '../img/bg-normal.png'
+        pokemonCardBG = 'img/bg-normal.png'
     }
     if (correntType == 'poison') {
-        pokemonCardBG = '../img/bg-poison.png'
+        pokemonCardBG = 'img/bg-poison.png'
     }
     if (correntType == 'psychic') {
-        pokemonCardBG = '../img/bg-psychic.png'
+        pokemonCardBG = 'img/bg-psychic.png'
     }
     if (correntType == 'rock') {
-        pokemonCardBG = '../img/bg-rock.png'
+        pokemonCardBG = 'img/bg-rock.png'
     }
     if (correntType == 'steel') {
-        pokemonCardBG = '../img/bg-steel.png'
+        pokemonCardBG = 'img/bg-steel.png'
     }
     if (correntType == 'water') {
-        pokemonCardBG = '../img/bg-water.png'
+        pokemonCardBG = 'img/bg-water.png'
     }
 }
 
@@ -157,13 +157,13 @@ function nightDay() {
     let fontColor = document.getElementById('title');
 
     if (mode == 'light') {
-        nightDayMode1.style = 'background-image: url(../img/bg-darkmode.png)';
-        nightDayMode2.style = 'background-image: url(../img/bg-darkmode.png)';
+        nightDayMode1.style = 'background-image: url(img/bg-darkmode.png)';
+        nightDayMode2.style = 'background-image: url(img/bg-darkmode.png)';
         fontColor.classList.add('font-color-white');
         mode = 'dark';
     } else {
-        nightDayMode1.style = 'background-image: url(../img/bg-lightmode.png)';
-        nightDayMode2.style = 'background-image: url(../img/bg-lightmode.png)';
+        nightDayMode1.style = 'background-image: url(img/bg-lightmode.png)';
+        nightDayMode2.style = 'background-image: url(img/bg-lightmode.png)';
         fontColor.classList.remove('font-color-white');
         mode = 'light'
     }
