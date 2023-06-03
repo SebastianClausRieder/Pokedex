@@ -9,7 +9,7 @@ let pokemonTypeTWO;
 // Functions for load Pokemons
 
 async function loadPokedex() {
-    for (let p = 1; p < 51; p++) { // 1011
+    for (let p = 1; p < 151; p++) { // 1011
         const pokemon = p;
         await loadPokemon(pokemon);
     }
@@ -31,9 +31,9 @@ function renderPokemonCard() {
 }
 
 function pokeCardTemp() {
-    formatiereUndZeigeZahl();
+    showAreaPokemonID();
     return /*html */ `
-    <div class="pokemon-card font-source-sans-pro" style="background-image: url(${pokemonCardBG});" onclick="showPokemon(${correntPokemon['id']})">
+    <div class="pokemon-card font-source-sans-pro" style="background-image: url(${pokemonCardBG});" onclick="openPokedex(${correntPokemon['id']})">
         <div class="name-id">
             <span class="poke-name">${correntPokemon['forms'][0]['name']}</span>
             <span class="poke-id">#${pokemonID}</span>
@@ -49,16 +49,16 @@ function pokeCardTemp() {
     `;
 }
 
-// Format number
+// Format number Pokedex Area
 
-function formatiereZahl(zahl) {
+function areaPokemonID(zahl) {
     return zahl.toString().padStart(3, '0');
 }
 
-function formatiereUndZeigeZahl() {
+function showAreaPokemonID() {
     let zahl = correntPokemon['id'];
 
-    pokemonID = formatiereZahl(zahl);
+    pokemonID = areaPokemonID(zahl);
 }
 
 // Type available
@@ -81,58 +81,58 @@ function pokemonType() {
     let correntType = correntPokemon['types'][0]['type']['name'];
 
     if (correntType == 'bug') {
-        pokemonCardBG = 'img/bg-bug.png'
+        pokemonCardBG = 'img/bg-bug.png';
     }
     if (correntType == 'dark') {
-        pokemonCardBG = 'img/bg-dark.png'
+        pokemonCardBG = 'img/bg-dark.png';
     }
     if (correntType == 'dragon') {
-        pokemonCardBG = '../img/bg-dragon.png'
+        pokemonCardBG = '../img/bg-dragon.png';
     }
     if (correntType == 'electric') {
-        pokemonCardBG = 'img/bg-electric.png'
+        pokemonCardBG = 'img/bg-electric.png';
     }
     if (correntType == 'fairy') {
-        pokemonCardBG = 'img/bg-fairy.png'
+        pokemonCardBG = 'img/bg-fairy.png';
     }
     if (correntType == 'fighting') {
-        pokemonCardBG = 'img/bg-fighting.png'
+        pokemonCardBG = 'img/bg-fighting.png';
     }
     if (correntType == 'fire') {
-        pokemonCardBG = 'img/bg-fire.png'
+        pokemonCardBG = 'img/bg-fire.png';
     }
     if (correntType == 'flying') {
-        pokemonCardBG = 'img/bg-flying.png'
+        pokemonCardBG = 'img/bg-flying.png';
     }
     if (correntType == 'ghost') {
-        pokemonCardBG = 'img/bg-ghost.png'
+        pokemonCardBG = 'img/bg-ghost.png';
     }
     if (correntType == 'grass') {
-        pokemonCardBG = 'img/bg-grass.png'
+        pokemonCardBG = 'img/bg-grass.png';
     }
     if (correntType == 'ground') {
-        pokemonCardBG = 'img/bg-ground.png'
+        pokemonCardBG = 'img/bg-ground.png';
     }
     if (correntType == 'ice') {
-        pokemonCardBG = 'img/bg-ice.png'
+        pokemonCardBG = 'img/bg-ice.png';
     }
     if (correntType == 'normal') {
-        pokemonCardBG = 'img/bg-normal.png'
+        pokemonCardBG = 'img/bg-normal.png';
     }
     if (correntType == 'poison') {
-        pokemonCardBG = 'img/bg-poison.png'
+        pokemonCardBG = 'img/bg-poison.png';
     }
     if (correntType == 'psychic') {
-        pokemonCardBG = 'img/bg-psychic.png'
+        pokemonCardBG = 'img/bg-psychic.png';
     }
     if (correntType == 'rock') {
-        pokemonCardBG = 'img/bg-rock.png'
+        pokemonCardBG = 'img/bg-rock.png';
     }
     if (correntType == 'steel') {
-        pokemonCardBG = 'img/bg-steel.png'
+        pokemonCardBG = 'img/bg-steel.png';
     }
     if (correntType == 'water') {
-        pokemonCardBG = 'img/bg-water.png'
+        pokemonCardBG = 'img/bg-water.png';
     }
 }
 
