@@ -429,6 +429,10 @@ canvas {
     scrollbar-width: none;
 }
 
+#lowerContain::-webkit-scrollbar {
+    width: 0;
+}
+
 .playable-edition {
     width: 140px;
     height: 35px;
@@ -445,6 +449,47 @@ canvas {
     text-transform: uppercase;
 }
 
-#lowerContain::-webkit-scrollbar {
-    width: 0;
+#evolutions {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.evolution{
+    width: 125px;
+}
+
+.evo-arrow {
+    width: 40px;
+}
+
+.eevees-evos {
+    width: 600px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.evo {
+    width: fit-content;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.poke-evo-name {
+    font-family: 'Source Sans Pro';
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: -15px;
+}
+
+.poke-evo-name:first-letter {
+    text-transform: uppercase;
 }

@@ -9,6 +9,9 @@ let evoPokemon1;
 let pokemonEvolution2;
 let pokemonEvolutionURL2;
 let evoPokemon2;
+let pokemonEvo1;
+let pokemonEvo2;
+let pokemonEvo3;
 let data;
 let additionalLabels = [];
 let hiddenContain;
@@ -29,11 +32,13 @@ let eeveeURL8;
 // Functions Show Pokemon Stats
 
 async function openPokedex(clickedPokemon) {
+    undefineGlobalVariables();
+
     let url = `https://pokeapi.co/api/v2/pokemon/${clickedPokemon}`;
     let response = await fetch(url);
     showPokemon = await response.json();
-    await showEvolutions();
     pokemonEevee = showPokemon['forms'][0]['name'];
+    await showEvolutions();
 
     let selectetPokemon = document.getElementById('display');
     let selectetPokemonName = document.getElementById('green-display');
@@ -48,6 +53,67 @@ async function openPokedex(clickedPokemon) {
     adjustElementToScreen('status-area');
     statsRadarChart();
 }
+
+// Pokedex Right Side
+
+function showPokemonTemp() {
+    showPokedexPokemonID();
+    return /*html */ `    
+        <div class="pixel-image-ID font-source-sans-pro">
+            <img src="${showPokemon['sprites']['front_default']}" class="pixel-image">
+            <span class="pokedex-pokemon-name">${showPokemon['forms'][0]['name']}</span>
+            <span class="pokedex-poke-id">#${pokedexPokeID}</span>
+        </div>
+        <canvas id="radarChart"></canvas>
+        <div class="playable-skills">
+            <button class="playable" onclick="showPlayableEditons()">Playable in Edition</button>
+            <button class="skills" onclick="showSkills()">${showPokemon['forms'][0]['name']}'s Skills</button>
+        </div>
+        <div class="belowContainer">
+            <div id="show-contain" class="show-contain"></div>
+            <div id="evolutions">
+            </div>
+        </div>
+    `;
+}
+
+function showPlayableEditons() {
+    hiddenContain = document.getElementById('show-contain');
+    hiddenContain.classList.add('d-show');
+    hiddenContain.innerHTML = ``;
+    hiddenContain.innerHTML = /*html */ `
+        <button class="close-btn" onclick="closeHiddenContain()">X</button>
+        <div id="lowerContain"></div>
+    `;
+
+    for (let pe = 0; pe < showPokemon['game_indices'].length; pe++) {
+        const playableEdition = showPokemon['game_indices'][pe]['version']['name'];
+
+        document.getElementById('lowerContain').innerHTML += /*html */ `
+            <div class="playable-edition">${playableEdition}</div>
+        `;
+    }
+}
+
+function showSkills() {
+    hiddenContain = document.getElementById('show-contain');
+    hiddenContain.classList.add('d-show');
+    hiddenContain.innerHTML = ``;
+    hiddenContain.innerHTML = /*html */ `
+        <button class="close-btn" onclick="closeHiddenContain()">X</button>
+        <div id="lowerContain"></div>
+    `;
+
+    for (let ps = 0; ps < showPokemon['moves'].length; ps++) {
+        const skill = showPokemon['moves'][ps]['move']['name'];
+
+        document.getElementById('lowerContain').innerHTML += /*html */ `
+            <div class="playable-edition">${skill}</div>
+        `;
+    }
+}
+
+// Take Evolutions
 
 async function showEvolutions() {
     let url = showPokemon['species']['url'];
@@ -68,7 +134,6 @@ async function showEvolutions() {
         pokemonEvolution1 = evolutions['chain']['evolves_to'][0]['species']['name'];
         pokemonEvolutionURL1 = evolutions['chain']['evolves_to'][0]['species']['url'];
         eeveeEvolutions = evolutions['chain']['evolves_to'];
-        eevee(eeveeEvolutions);
 
         let evoResponse1 = await fetch(pokemonEvolutionURL1);
         let newSpecies1 = await evoResponse1.json();
@@ -102,10 +167,14 @@ async function showEvolutions() {
     } else {
         evoPokemon2;
     }
+
+    if (pokemonEevee == 'eevee') {
+        await eevee(eeveeEvolutions);
+    }
 }
 
 async function eevee(eeveeEvolutions) {
-
+    
         // Vaporeon
 
         let eeveeResponse1 = await fetch(eeveeEvolutions[0]['species']['url']);
@@ -179,11 +248,12 @@ async function eevee(eeveeEvolutions) {
         eeveeURL8 = await eeveePokemonResponse8.json();
 }
 
+// Evolution Determination
+
 function evolutionDetermination() {
+    let ignorPokemon = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png';
     let pokemonEvoltions = document.getElementById('evolutions');
-    let pokemonEvo1 = showPokemon['sprites']['front_default'];
-    let pokemonEvo2;
-    let pokemonEvo3;
+    pokemonEvo1 = showPokemon['sprites']['front_default'];
 
     if (
         evoPokemon1 &&
@@ -192,6 +262,10 @@ function evolutionDetermination() {
         pokemonEvo2 = evoPokemon1['sprites']['front_default'];
     } else {
         pokemonEvo2;
+    }
+
+    if (pokemonEvo2 == ignorPokemon) {
+        pokemonEvo2 = undefined;
     }
 
     if (
@@ -203,102 +277,142 @@ function evolutionDetermination() {
         pokemonEvo3;
     }
 
-    if (pokemonEvo2 == undefined && pokemonEvo3 == undefined) {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">        
-        `;
-    } else if (pokemonEevee == 'eevee') {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">
-        <img src="${pokemonEvo2}" alt="" class="evolution">        
-        `;
-    } else if (pokemonEvo1 == pokemonEvo2 && pokemonEvo3 !== undefined) {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">
-        <img src="${pokemonEvo3}" alt="" class="evolution">        
-        `;
-    } else if (pokemonEvo1 !== pokemonEvo2 && pokemonEvo3 == undefined) {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution"> 
-        <img src="${pokemonEvo2}" alt="" class="evolution">       
-        `;
-    } else if (pokemonEvo1 == pokemonEvo2 && pokemonEvo3 == undefined) {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">        
-        `;
-    } else if (pokemonEvo1 == pokemonEvo3) {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">        
-        `;
-    } else if (pokemonEvo2 == undefined && pokemonEvo3 == undefined) {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">
-        `;
-    } else {
-        pokemonEvoltions.innerHTML = /*html */ `
-        <img src="${pokemonEvo1}" alt="" class="evolution">
-        <img src="${pokemonEvo2}" alt="" class="evolution">
-        <img src="${pokemonEvo3}" alt="" class="evolution">        
-        `;
+    if (pokemonEevee == 'eevee') { // Eevee Evolutions
+        pokemonEvoltions.innerHTML = eeveeTemp();
+    } else if (pokemonEvo2 == undefined && pokemonEvo3 == undefined) { // If no Evolution
+        pokemonEvoltions.innerHTML = onlyOne();
+    } else if (pokemonEvo1 !== pokemonEvo2 && pokemonEvo3 == undefined) { // If 2 Evolutions and select the 1st
+        pokemonEvoltions.innerHTML = firstOfTwoEvos();
+    } else if (pokemonEvo1 == pokemonEvo2 && pokemonEvo3 == undefined) { // if 2 Evolutions and select the 2nd
+        pokemonEvoltions.innerHTML = twoOfTwoEvos();
+    } else if (pokemonEvo1 == pokemonEvo2 && pokemonEvo3 !== undefined) { // If 3 Evolutions and select the 2nd
+        pokemonEvoltions.innerHTML = secOfThreeEvos();
+    } else if (pokemonEvo1 == pokemonEvo3) { // If 3 Evolutions and select the 3rd
+        pokemonEvoltions.innerHTML = thirdOfThreeEvos();
+    } else { // If 3 Evolutions and select the 1st
+        pokemonEvoltions.innerHTML = firstOfThreeEvos();
     }
 }
 
-function showPokemonTemp() {
-    showPokedexPokemonID();
-    return /*html */ `    
-        <div class="pixel-image-ID font-source-sans-pro">
-            <img src="${showPokemon['sprites']['front_default']}" class="pixel-image">
-            <span class="pokedex-pokemon-name">${showPokemon['forms'][0]['name']}</span>
-            <span class="pokedex-poke-id">#${pokedexPokeID}</span>
+function onlyOne() {
+    return /*html */ `
+    <div class="evo">
+        <img src="${pokemonEvo1}" alt="" class="evolution">
+        <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
+    </div>
+`;
+}
+
+function firstOfTwoEvos() {
+    return /*html */ `
+        <div class="evo">
+            <img src="${pokemonEvo1}" alt="" class="evolution">
+            <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
         </div>
-        <canvas id="radarChart"></canvas>
-        <div class="playable-skills">
-            <button class="playable" onclick="showPlayableEditons()">Playable in Edition</button>
-            <button class="skills" onclick="showSkills()">${showPokemon['forms'][0]['name']}'s Skills</button>
+        <img src="img/icons/evo-arrow.png" alt="" class="evo-arrow">
+        <div class="evo">
+            <img src="${pokemonEvo2}" alt="" class="evolution">
+            <span class="poke-evo-name">${pokemonEvolution1}</span>
         </div>
-        <div class="belowContainer">
-            <div id="show-contain" class="show-contain"></div>
-            <div id="evolutions">
+    `;
+}
+
+function twoOfTwoEvos() {
+    return /*html */ `
+        <div class="evo">
+            <img src="${pokemonEvo1}" alt="" class="evolution">
+            <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
+        </div>
+    `;
+}
+
+function firstOfThreeEvos() {
+    return /*html */ `
+    <div class="evo">
+        <img src="${pokemonEvo1}" alt="" class="evolution">
+        <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
+    </div>
+    <img src="img/icons/evo-arrow.png" alt="" class="evo-arrow">
+    <div class="evo">
+        <img src="${pokemonEvo2}" alt="" class="evolution">
+        <span class="poke-evo-name">${pokemonEvolution1}</span>
+    </div>
+    <img src="img/icons/evo-arrow.png" alt="" class="evo-arrow">
+    <div class="evo">
+        <img src="${pokemonEvo3}" alt="" class="evolution">
+        <span class="poke-evo-name">${pokemonEvolution2}</span>
+    </div>
+    `;
+}
+
+function secOfThreeEvos() {
+    return /*html */ `
+    <div class="evo">
+        <img src="${pokemonEvo1}" alt="" class="evolution">
+        <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
+    </div>
+    <img src="img/icons/evo-arrow.png" alt="" class="evo-arrow">
+    <div class="evo">
+        <img src="${pokemonEvo3}" alt="" class="evolution">
+        <span class="poke-evo-name">${pokemonEvolution2}</span>
+    </div>
+`;
+}
+
+function thirdOfThreeEvos() {
+    return /*html */ `
+        <div class="evo">
+            <img src="${pokemonEvo1}" alt="" class="evolution">
+            <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
+        </div>
+    `;
+}
+
+function eeveeTemp() {
+    return /*html */ `
+        <div class="evo">
+            <img src="${pokemonEvo1}" alt="" class="evolution">
+            <span class="poke-evo-name">${showPokemon['forms'][0]['name']}</span>
+        </div>
+        <img src="img/icons/evo-arrow.png" alt="" class="evo-arrow">
+        <div class="eevees-evos">
+            <div class="evo">
+                <img src="${eeveeURL1['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[0]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL2['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[1]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL3['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[2]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL4['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[3]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL5['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[4]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL6['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[5]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL7['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[6]['species']['name']}</span>
+            </div>
+            <div class="evo">
+                <img src="${eeveeURL8['sprites']['front_default']}" alt="" class="evolution">
+                <span class="poke-evo-name">${eeveeEvolutions[7]['species']['name']}</span>
             </div>
         </div>
     `;
 }
 
-function showPlayableEditons() {
-    hiddenContain = document.getElementById('show-contain');
-    hiddenContain.classList.add('d-show');
-    hiddenContain.innerHTML = ``;
-    hiddenContain.innerHTML = /*html */ `
-        <button class="close-btn" onclick="closeHiddenContain()">X</button>
-        <div id="lowerContain"></div>
-    `;
-
-    for (let pe = 0; pe < showPokemon['game_indices'].length; pe++) {
-        const playableEdition = showPokemon['game_indices'][pe]['version']['name'];
-
-        document.getElementById('lowerContain').innerHTML += /*html */ `
-            <div class="playable-edition">${playableEdition}</div>
-        `;
-    }
-}
-
-function showSkills() {
-    hiddenContain = document.getElementById('show-contain');
-    hiddenContain.classList.add('d-show');
-    hiddenContain.innerHTML = ``;
-    hiddenContain.innerHTML = /*html */ `
-        <button class="close-btn" onclick="closeHiddenContain()">X</button>
-        <div id="lowerContain"></div>
-    `;
-
-    for (let ps = 0; ps < showPokemon['moves'].length; ps++) {
-        const skill = showPokemon['moves'][ps]['move']['name'];
-
-        document.getElementById('lowerContain').innerHTML += /*html */ `
-            <div class="playable-edition">${skill}</div>
-        `;
-    }
-}
+// Return
 
 function goBack() {
     document.getElementById('pokemonStats').classList.remove('d-show');
@@ -368,9 +482,9 @@ function statsRadarChart() {
             datasets: [{
                 label: 'Pokemon Stats',
                 data: [],
-                backgroundColor: 'rgba(101, 15, 181, 1)', // Hintergrundfarbe des Charts
-                borderColor: 'rgba(101, 15, 181, 1)', // Farbe der Linie
-                borderWidth: 1, // Dicke der Linie
+                backgroundColor: 'rgba(101, 15, 181, 0.5)', // Hintergrundfarbe des Charts
+                borderColor: 'rgba(101, 15, 181, 0.5)', // Farbe der Linie
+                borderWidth: 0, // Dicke der Linie
             }]
         },
         options: {
@@ -398,4 +512,12 @@ function statsRadarChart() {
     new Chart(ctx, options);
 
     Chart.defaults.font.size = 20;
+}
+
+function undefineGlobalVariables() {
+    evoPokemon1 = undefined;
+    evoPokemon2 = undefined;
+    pokemonEvo1 = undefined;
+    pokemonEvo2 = undefined;
+    pokemonEvo3 = undefined;
 }

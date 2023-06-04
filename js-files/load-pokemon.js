@@ -9,7 +9,7 @@ let pokemonTypeTWO;
 // Functions for load Pokemons
 
 async function loadPokedex() {
-    for (let p = 1; p < 151; p++) { // 1011
+    for (let p = 125; p < 151; p++) { // 1011
         const pokemon = p;
         await loadPokemon(pokemon);
     }
@@ -87,7 +87,7 @@ function pokemonType() {
         pokemonCardBG = 'img/bg-dark.png';
     }
     if (correntType == 'dragon') {
-        pokemonCardBG = '../img/bg-dragon.png';
+        pokemonCardBG = 'img/bg-dragon.png';
     }
     if (correntType == 'electric') {
         pokemonCardBG = 'img/bg-electric.png';
