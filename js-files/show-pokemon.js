@@ -86,12 +86,19 @@ function showPlayableEditons() {
         <div id="lowerContain"></div>
     `;
 
-    for (let pe = 0; pe < showPokemon['game_indices'].length; pe++) {
-        const playableEdition = showPokemon['game_indices'][pe]['version']['name'];
+    if ( showPokemon['game_indices'].length > 0) {
 
-        document.getElementById('lowerContain').innerHTML += /*html */ `
-            <div class="playable-edition">${playableEdition}</div>
-        `;
+        for (let pe = 0; pe < showPokemon['game_indices'].length; pe++) {
+            const playableEdition = showPokemon['game_indices'][pe]['version']['name'];
+
+            document.getElementById('lowerContain').innerHTML += /*html */ `
+                <span class="playable-edition">${playableEdition}</span>
+            `;
+        }
+    } else {
+            document.getElementById('lowerContain').innerHTML += /*html */ `
+                <span class="playable-edition">Unfortunately, no editions are known.</span>
+            `;
     }
 }
 
@@ -108,7 +115,7 @@ function showSkills() {
         const skill = showPokemon['moves'][ps]['move']['name'];
 
         document.getElementById('lowerContain').innerHTML += /*html */ `
-            <div class="playable-edition">${skill}</div>
+            <span class="playable-edition">${skill}</span>
         `;
     }
 }
@@ -482,14 +489,18 @@ function statsRadarChart() {
             datasets: [{
                 label: 'Pokemon Stats',
                 data: [],
-                backgroundColor: 'rgba(101, 15, 181, 0.5)', // Hintergrundfarbe des Charts
-                borderColor: 'rgba(101, 15, 181, 0.5)', // Farbe der Linie
-                borderWidth: 0, // Dicke der Linie
+                backgroundColor: 'rgba(101, 15, 181, 0.3)', // Hintergrundfarbe des Charts
+                borderColor: 'rgba(101, 15, 181, 0.3)', // Farbe der Linie
+                borderWidth: 0.5, // Dicke der Linie
             }]
         },
         options: {
             scales: {
                 r: {
+                    angleLines: {
+                        display: false
+                    },
+                    suggestedMin: 1,
                     pointLabels: {
                         font: {
                             size: 16,

@@ -60,10 +60,7 @@
 .poke-name {
     display: block;
     color: white;
-}
-
-.poke-name:first-letter {    
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .poke-id {
