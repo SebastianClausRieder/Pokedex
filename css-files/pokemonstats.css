@@ -270,7 +270,6 @@
     overflow: hidden;
     width: 0;
     white-space: nowrap;
-    animation: typing 5s steps(35, end) forwards;
     text-transform: capitalize;
 }
 
@@ -284,9 +283,10 @@
     }
 }
 
-.control-pad-image {
+#control-pad-image {
     width: auto;
     height: 100%;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,6 +294,24 @@
 
 .right-control-pad {
     width: 175px;
+}
+
+.arrow-left {
+    width: 50px;
+    height: 35px;
+    position: absolute;
+    top: 83px;
+    left: 15px;
+    cursor: pointer;
+}
+
+.arrow-right {
+    width: 50px;
+    height: 35px;
+    position: absolute;
+    top: 83px;
+    right: 15px;
+    cursor: pointer;
 }
 
 /* Right Side */

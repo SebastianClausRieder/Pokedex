@@ -5,38 +5,38 @@ let pokemonID;
 let pokemonCardBG;
 let pokemonTypeONE;
 let pokemonTypeTWO;
-let loadedPokemons = 100; // Anzahl der bereits geladenen Pokémon
-let pokemonLoaded = 1; // Anzahl der geladenen Pokémon
-
-// Global scroll Check
-let scroll0 = false;
-let scroll1 = false;
-let scroll2 = false;
-let scroll3 = false;
-let scroll4 = false;
-let scroll5 = false;
-let scroll6 = false;
-let scroll7 = false;
-let scroll8 = false;
-let scroll9 = false;
+let loadedPokemons = 50; // Anzahl der bereits geladenen Pokémon
+let pokemonToLoad = 1; // Anzahl der geladenen Pokémon
+let scroll = false;
 
 // Functions for load Pokemons
 
 async function loadPokedex() {
-    for (let p = pokemonLoaded; p <= loadedPokemons; p++) { // 1011
+    let imLoading = document.getElementById('onloading');
+    imLoading.innerHTML = /*html */ `<span class="loading">Loading!</span>`;
+
+    for (let p = pokemonToLoad; p <= loadedPokemons; p++) { // 1011
         const pokemon = p;
         await loadPokemon(pokemon);
-    } if (loadedPokemons <= 1000) {
-        loadedPokemons += 100;
-        pokemonLoaded += 100;
+    } 
+    
+    document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${loadedPokemons} Pokemon Loaded</span>`;
+    imLoading.innerHTML = /*html */ ``;
+	if (pokemonToLoad <= 50) {
+        loadedPokemons += 25;
+        pokemonToLoad += 50;        
+    } else if (loadedPokemons <= 1000) {
+        loadedPokemons += 25;
+        pokemonToLoad += 25;
     } else {
         loadedPokemons += 10;
-        pokemonLoaded += 10;
+        pokemonToLoad += 10;
     }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const content = document.getElementById("pokemonArea");
+    let content = document.getElementById("pokemonArea");
+    let infoArea = document.getElementById('infoArea');
     content.addEventListener("wheel", (event) => {
        event.preventDefault();
        // getting the scrolling speed.
@@ -49,45 +49,19 @@ document.addEventListener("DOMContentLoaded", function () {
        content.scrollTop += speed;
     });
     content.addEventListener("scroll", async function (event) {
-        let scroll = this.scrollTop;
-        console.log(scroll);
-
-		  if (!scroll0 && scroll >= 2500 && pokemonLoaded <= 101) {
-            scroll0 = true;
+        if (!scroll && loadedPokemons <= 1010) {
+            scroll = true;
+            infoArea.innerHTML = /*html */ `<span class="info">Scroll Loading Timeout</span>`;
             await loadPokedex();
-        } if (!scroll1 && scroll >= 6300 && pokemonLoaded <= 201) {
-            scroll1 = true;
-            await loadPokedex();
-        } if (!scroll2 && scroll >= 9800 && pokemonLoaded <= 301) {
-            scroll2 = true;
-            await loadPokedex();
-        } if (!scroll3 && scroll >= 13500 && pokemonLoaded <= 401) {
-            scroll3 = true;
-            await loadPokedex();
-        } if (!scroll4 && scroll >= 17000 && pokemonLoaded <= 501) {
-            scroll4 = true;
-            await loadPokedex();
-        } if (!scroll5 && scroll >= 20700 && pokemonLoaded <= 601) {
-            scroll5 = true;
-            await loadPokedex();
-        } if (!scroll6 && scroll >= 24300 && pokemonLoaded <= 701) {
-            scroll6 = true;
-            await loadPokedex();
-        } if (!scroll7 && scroll >= 28000 && pokemonLoaded <= 801) {
-            scroll7 = true;
-            await loadPokedex();
-        } if (!scroll8 && scroll >= 31600 && pokemonLoaded <= 901) {
-            scroll8 = true;
-            await loadPokedex();
-        } if (!scroll9 && scroll >= 35200 && pokemonLoaded <= 1001) {
-            scroll9 = true;
-            await loadPokedex();
+            scroll = false;
+            infoArea.innerHTML = /*html */ `<span class="info">Scroll Loading Aktive</span>`;
         }
     });
 });
-
 // setTimeout(() => {
-//   }, 10000);
+// }, 5000);
+
+
 
 async function loadPokemon(pokemon) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;

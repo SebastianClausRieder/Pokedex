@@ -67,6 +67,10 @@
         .font-color-white {
             color: white;
         }
+
+        .animation {
+            animation: typing 5s steps(35, end) forwards;
+        }
     </style>
 </head>
 
@@ -82,7 +86,7 @@
                 <span class="searchtext font-source-sans-pro">What Pokémon are<br>you looking for?</span>
                 <div class="search-input">
                     <input id="searchfild" class="font-source-sans-pro" type="text"
-                        placeholder="Search Pokémon, Types, ID, etc">
+                        placeholder="Search Pokémon, Name, ID, etc">
                     <img src="img/icons/poke-search.png" class="search-icon">
                 </div>
             </div>
@@ -90,6 +94,11 @@
         <div class="pokedex-main-area">
             <h2 id="title" class="title font-source-sans-pro">Pokédex</h2>
             <div id="pokemonArea"></div>
+            <div class="message-board font-source-sans-pro">
+                <div id="pokemonInArea"></div>
+                <div id="onloading"></div>
+                <div id="infoArea"></div>
+            </div>
         </div>
     </div>
 
@@ -143,8 +152,7 @@
                                 <p><span id="pokemonGDName" class="font-source-sans-pro"></span></p>
                             </div>
                         </div>
-                        <div class="control-pad-image">
-                            <img src="img/icons/control-pad.png" class="right-control-pad">
+                        <div id="control-pad-image">
                         </div>
                     </div>
                 </div>

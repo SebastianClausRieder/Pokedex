@@ -15,6 +15,7 @@ let pokemonEvo3;
 let data;
 let additionalLabels = [];
 let hiddenContain;
+let pokeID;
 
 // Global Eevee
 
@@ -37,17 +38,19 @@ async function openPokedex(clickedPokemon) {
     let url = `https://pokeapi.co/api/v2/pokemon/${clickedPokemon}`;
     let response = await fetch(url);
     showPokemon = await response.json();
+    pokeID = showPokemon['id'];
     pokemonEevee = showPokemon['forms'][0]['name'];
     await showEvolutions();
 
     let selectetPokemon = document.getElementById('display');
-    let selectetPokemonName = document.getElementById('green-display');
+    let controlPad = document.getElementById('control-pad-image');
     let showPokedex = document.getElementById('pokemonStats');
     showPokedex.classList.add('d-show');
     let pokemonStats = document.getElementById('right-side');
     pokemonNameAnimation();
 
     selectetPokemon.innerHTML = /*html */ `<img src="${showPokemon['sprites']['other']['official-artwork']['front_default']}" class="selectet-pokemon">`;
+    controlPad.innerHTML = padTemp();
     pokemonStats.innerHTML = showPokemonTemp();
     evolutionDetermination();
     adjustElementToScreen('status-area');
@@ -419,7 +422,7 @@ function eeveeTemp() {
     `;
 }
 
-// Return
+// Return and Close
 
 function goBack() {
     document.getElementById('pokemonStats').classList.remove('d-show');
@@ -431,22 +434,63 @@ function closeHiddenContain() {
 
 // Format number open Pokedex
 
-function pokedexPokemonID(zahl) {
-    return zahl.toString().padStart(3, '0');
+function pokedexPokemonID(number) {
+    return number.toString().padStart(3, '0');
 }
 
 function showPokedexPokemonID() {
-    let zahl = showPokemon['id'];
+    let number = pokeID;
 
-    pokedexPokeID = pokedexPokemonID(zahl);
+    pokedexPokeID = pokedexPokemonID(number);
 }
 
-// Text Animation
+// Text Animation and Control Pad
 
 function pokemonNameAnimation() {
     let pokemonGDName = `${showPokemon['forms'][0]['name']}`;
     let gdPokeName = document.getElementById('pokemonGDName');
     gdPokeName.textContent = pokemonGDName;
+
+    // Start Animation Manuel
+    startAnimation(gdPokeName);
+}
+
+// Update Name
+function updatePokemonName(newName) {
+    let gdPokeName = document.getElementById('pokemonGDName');
+    gdPokeName.textContent = newName;
+
+    // Start Animation Manuel
+    startAnimation(gdPokeName);
+}
+
+function startAnimation(element) {
+    element.classList.add('animation');
+}
+
+let previous;
+let next;
+
+function padTemp() {
+    previous = pokeID - 1;
+    next = pokeID + 1;
+    return /*html */ `
+        <img src="img/icons/control-pad.png" class="right-control-pad">
+        <div class="arrow-left" onclick="previousPokemon(${previous})"></div>
+        <div class="arrow-right" onclick="nextPokemon(${next})"></div>
+    `;
+}
+
+async function previousPokemon(previous) {
+    document.getElementById('pokemonGDName').classList.remove('animation');
+    await openPokedex(previous);
+    updatePokemonName(showPokemon['forms'][0]['name']);
+}
+
+async function nextPokemon(next) {
+    document.getElementById('pokemonGDName').classList.remove('animation');
+    await openPokedex(next);
+    updatePokemonName(showPokemon['forms'][0]['name']);
 }
 
 // Pokedex Scale written by ChatGPT
