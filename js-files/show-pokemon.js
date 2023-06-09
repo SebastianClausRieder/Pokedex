@@ -444,7 +444,7 @@ function showPokedexPokemonID() {
     pokedexPokeID = pokedexPokemonID(number);
 }
 
-// Text Animation and Control Pad
+// Text Animation
 
 function pokemonNameAnimation() {
     let pokemonGDName = `${showPokemon['forms'][0]['name']}`;
@@ -468,17 +468,31 @@ function startAnimation(element) {
     element.classList.add('animation');
 }
 
+// Previous or Next Pad
+
 let previous;
 let next;
 
 function padTemp() {
     previous = pokeID - 1;
     next = pokeID + 1;
-    return /*html */ `
-        <img src="img/icons/control-pad.png" class="right-control-pad">
-        <div class="arrow-left" onclick="previousPokemon(${previous})"></div>
-        <div class="arrow-right" onclick="nextPokemon(${next})"></div>
-    `;
+      if (previous == 0) {
+        return /*html */ `
+            <img src="img/icons/control-pad-right.png" class="right-control-pad">
+            <div class="arrow-right" onclick="nextPokemon(${next})"></div>
+        `;
+    } else if (next == 1011) {
+        return /*html */ `
+            <img src="img/icons/control-pad-left.png" class="right-control-pad">
+            <div class="arrow-left" onclick="previousPokemon(${previous})"></div>
+        `;        
+    } else {
+        return /*html */ `
+            <img src="img/icons/control-pad.png" class="right-control-pad">
+            <div class="arrow-left" onclick="previousPokemon(${previous})"></div>
+            <div class="arrow-right" onclick="nextPokemon(${next})"></div>
+        `;
+    }
 }
 
 async function previousPokemon(previous) {

@@ -20,6 +20,7 @@
     <!-- Java Script -->
     <script src="js-files/load-pokemon.js"></script>
     <script src="js-files/show-pokemon.js"></script>
+    <script src="js-files/nav-bar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Favicon and Title -->
@@ -85,10 +86,114 @@
                 <h1 class="pokedex-title2">Pokédex</h1>
                 <span class="searchtext font-source-sans-pro">What Pokémon are<br>you looking for?</span>
                 <div class="search-input">
-                    <input id="searchfild" class="font-source-sans-pro" type="text"
-                        placeholder="Search Pokémon, Name, ID, etc">
-                    <img src="img/icons/poke-search.png" class="search-icon">
+                    <input id="searchfild" class="font-source-sans-pro" placeholder="Search Pokemon by name and ID">
+                    <img src="img/icons/poke-search.png" id="search-icon" onclick="searchPokemon()">
+                    <img src="img/icons/info.png" class="info-BTN" onclick="info()">
+                    <div id="infoFild" class="infoFild font-source-sans-pro">
+                        <li class="info">ID from 1 to 1010</li>
+                        <li class="info">and not 001 or #001</li>
+                        <li class="info">Correct Pokemon names only</li>
+                        <li class="info">and only in english</li>
+                    </div>
                 </div>
+            </div>
+            <div class="button-area font-source-sans-pro">
+                <button id="loadAllBTN" onclick="loadAllPokemon()">Load all Pokemon</button>
+                <div class="type-buttons">
+                    <div id="bug" class="button" onclick="showType('bug')">
+                        <img src="img/bg-bug.png" class="type-button">
+                        <span class="BTN-name-BG">Bug</span>
+                        <span class="BTN-name">Bug</span>
+                    </div>
+                    <div id="dark" class="button" onclick="showType('dark')">
+                        <img src="img/bg-dark.png" class="type-button">
+                        <span class="BTN-name-BG">Dark</span>
+                        <span class="BTN-name">Dark</span>
+                    </div>
+                    <div id="dragon" class="button" onclick="showType('dragon')">
+                        <img src="img/bg-dragon.png" class="type-button">
+                        <span class="BTN-name-BG">Dragon</span>
+                        <span class="BTN-name">Dragon</span>
+                    </div>
+                    <div id="electric" class="button" onclick="showType('electric')">
+                        <img src="img/bg-electric.png" class="type-button">
+                        <span class="BTN-name-BG">Electric</span>
+                        <span class="BTN-name">Electric</span>
+                    </div>
+                    <div id="fairy" class="button" onclick="showType('fairy')">
+                        <img src="img/bg-fairy.png" class="type-button">
+                        <span class="BTN-name-BG">Fairy</span>
+                        <span class="BTN-name">Fairy</span>
+                    </div>
+                    <div id="fighting" class="button" onclick="showType('fighting')">
+                        <img src="img/bg-fighting.png" class="type-button">
+                        <span class="BTN-name-BG">Fighting</span>
+                        <span class="BTN-name">Fighting</span>
+                    </div>
+                    <div id="fire" class="button" onclick="showType('fire')">
+                        <img src="img/bg-fire.png" class="type-button">
+                        <span class="BTN-name-BG">Fire</span>
+                        <span class="BTN-name">Fire</span>
+                    </div>
+                    <div id="flying" class="button" onclick="showType('flying')">
+                        <img src="img/bg-flying.png" class="type-button">
+                        <span class="BTN-name-BG">Flying</span>
+                        <span class="BTN-name">Flying</span>
+                    </div>
+                    <div id="ghost" class="button" onclick="showType('ghost')">
+                        <img src="img/bg-ghost.png" class="type-button">
+                        <span class="BTN-name-BG">Ghost</span>
+                        <span class="BTN-name">Ghost</span>
+                    </div>
+                    <div id="grass" class="button" onclick="showType('grass')">
+                        <img src="img/bg-grass.png" class="type-button">
+                        <span class="BTN-name-BG">Grass</span>
+                        <span class="BTN-name">Grass</span>
+                    </div>
+                    <div id="ground" class="button" onclick="showType('ground')">
+                        <img src="img/bg-ground.png" class="type-button">
+                        <span class="BTN-name-BG">Ground</span>
+                        <span class="BTN-name">Ground</span>
+                    </div>
+                    <div id="ice" class="button" onclick="showType('ice')">
+                        <img src="img/bg-ice.png" class="type-button">
+                        <span class="BTN-name-BG">Ice</span>
+                        <span class="BTN-name">Ice</span>
+                    </div>
+                    <div id="normal" class="button" onclick="showType('normal')">
+                        <img src="img/bg-normal.png" class="type-button">
+                        <span class="BTN-name-BG">Normal</span>
+                        <span class="BTN-name">Normal</span>
+                    </div>
+                    <div id="poison" class="button" onclick="showType('poison')">
+                        <img src="img/bg-poison.png" class="type-button">
+                        <span class="BTN-name-BG">Poison</span>
+                        <span class="BTN-name">Poison</span>
+                    </div>
+                    <div id="psychic" class="button" onclick="showType('psychic')">
+                        <img src="img/bg-psychic.png" class="type-button">
+                        <span class="BTN-name-BG">Psychic</span>
+                        <span class="BTN-name">Psychic</span>
+                    </div>
+                    <div id="rock" class="button" onclick="showType('rock')">
+                        <img src="img/bg-rock.png" class="type-button">
+                        <span class="BTN-name-BG">Rock</span>
+                        <span class="BTN-name">Rock</span>
+                    </div>
+                    <div id="steel" class="button" onclick="showType('steel')">
+                        <img src="img/bg-steel.png" class="type-button">
+                        <span class="BTN-name-BG">Steel</span>
+                        <span class="BTN-name">Steel</span>
+                    </div>
+                    <div id="water" class="button" onclick="showType('water')">
+                        <img src="img/bg-water.png" class="type-button">
+                        <span class="BTN-name-BG">Water</span>
+                        <span class="BTN-name">Water</span>
+                    </div>
+                </div>
+            </div>
+            <div class="warning">
+                <span class="attention font-source-sans-pro">! ATTENTION ! Loading takes a few minutes</span>
             </div>
         </navbar>
         <div class="pokedex-main-area">
@@ -97,7 +202,7 @@
             <div class="message-board font-source-sans-pro">
                 <div id="pokemonInArea"></div>
                 <div id="onloading"></div>
-                <div id="infoArea"></div>
+                <div class="infoArea"><span id="info">Scroll Loading Aktive</span></div>
             </div>
         </div>
     </div>

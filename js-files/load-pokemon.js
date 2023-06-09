@@ -5,8 +5,9 @@ let pokemonID;
 let pokemonCardBG;
 let pokemonTypeONE;
 let pokemonTypeTWO;
-let loadedPokemons = 50; // Anzahl der bereits geladenen Pokémon
-let pokemonToLoad = 1; // Anzahl der geladenen Pokémon
+let loadedPokemons = 50;
+let pokemonToLoad = 1;
+let aktuallLoadedPokemon = 0;
 let scroll = false;
 
 // Functions for load Pokemons
@@ -18,43 +19,40 @@ async function loadPokedex() {
     for (let p = pokemonToLoad; p <= loadedPokemons; p++) { // 1011
         const pokemon = p;
         await loadPokemon(pokemon);
+        document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} Pokemon Loaded</span>`;
     } 
-    
-    document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${loadedPokemons} Pokemon Loaded</span>`;
+        
     imLoading.innerHTML = /*html */ ``;
+
 	if (pokemonToLoad <= 50) {
         loadedPokemons += 25;
         pokemonToLoad += 50;        
-    } else if (loadedPokemons <= 1000) {
+    } else if (pokemonToLoad <= 975) {
         loadedPokemons += 25;
         pokemonToLoad += 25;
-    } else {
+    } else if (pokemonToLoad == 976) {
         loadedPokemons += 10;
-        pokemonToLoad += 10;
+        pokemonToLoad += 25;
+    } else if (pokemonToLoad == 1001) {
+        loadedPokemons = 1011;        
     }
 }
 
+// Loading by Scrolling Function
+
 document.addEventListener("DOMContentLoaded", function () {
     let content = document.getElementById("pokemonArea");
-    let infoArea = document.getElementById('infoArea');
-    content.addEventListener("wheel", (event) => {
-       event.preventDefault();
-       // getting the scrolling speed.
-       let deltaY = event.deltaY;
-       
-       // decreasing the scrolling speed by 5 times
-       let speed = deltaY / 5;
-       
-       // scrolling the content of the div element
-       content.scrollTop += speed;
-    });
+    let infoArea = document.getElementById('info');
     content.addEventListener("scroll", async function (event) {
-        if (!scroll && loadedPokemons <= 1010) {
+        if (!scroll && loadedPokemons < 1011) {
             scroll = true;
-            infoArea.innerHTML = /*html */ `<span class="info">Scroll Loading Timeout</span>`;
+            infoArea.innerHTML = /*html */ `Scroll Loading Timeout`;
             await loadPokedex();
             scroll = false;
-            infoArea.innerHTML = /*html */ `<span class="info">Scroll Loading Aktive</span>`;
+            infoArea.innerHTML = /*html */ `Scroll Loading Aktive`;
+        } else {
+            scroll = true;
+            infoArea.innerHTML = /*html */ `All Pokemon loaded`;
         }
     });
 });
@@ -65,12 +63,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadPokemon(pokemon) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
-    let response = await fetch(url);
-    correntPokemon = await response.json();
+    await checkURLExists(url)
+        .then(async exists => {
+            if (exists) {
+                let response = await fetch(url);
+                correntPokemon = await response.json();
+                aktuallLoadedPokemon += 1;
+        
+                pokemonTypeAvailable();
+                pokemonType();
+                renderPokemonCard();
+            } else {
+                document.getElementById('pokemonArea').innerHTML = `Wrong Input!`;
+                document.getElementById('info').innerHTML = ``;
+            }
+        })
+        .catch(error => {
+            console.error("Fehler beim Überprüfen der URL:", error);
+        });
+}
 
-    pokemonTypeAvailable();
-    pokemonType();
-    renderPokemonCard();
+async function checkURLExists(url) {
+    try {
+      const response = await fetch(url);
+      return response.ok; // Überprüfen, ob der Statuscode 200 (OK) ist
+    } catch (error) {
+      console.error(error);
+      return false; // Fehler beim Abrufen der URL
+    }
 }
 
 function renderPokemonCard() {

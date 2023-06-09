@@ -44,6 +44,7 @@
     font-size: 15px;
     font-weight: 900;
     color: #fa6555;
+    text-transform: capitalize;
 }
 
 #onloading {
@@ -60,7 +61,7 @@
     color: #fa6555;
 }
 
-#infoArea {
+.infoArea {
     width: 25%;
     height: 20px;
     display: flex;
@@ -68,10 +69,11 @@
     align-items: center;
 }
 
-.info {
+#info {
     font-size: 15px;
     font-weight: 900;
     color: #fa6555;
+    text-transform: capitalize;
 }
 
 /* Pokedex Cards */

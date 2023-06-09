@@ -23,7 +23,7 @@
 
 .searcharea {
     width: 95%;
-    height: 30%;
+    height: 29%;
     background-image: url(../img/bg-darker-red.png);
     background-size: cover;
     background-position-x: 470px;
@@ -47,6 +47,7 @@
     background-clip: text;
     color: transparent;
     margin-bottom: 0;
+    margin-top: 10px;
 }
 
 .pokedex-title2 {
@@ -62,6 +63,7 @@
     position: absolute;
     left: 13px;
     margin-bottom: 0;
+    margin-top: 10px;
 }
 
 .searchtext {
@@ -74,6 +76,7 @@
 .search-input {
     width: 95%;
     height: 52px;
+    position: relative;
     border-radius: 25px;
     margin-bottom: 15px;
     background-color: white;
@@ -92,9 +95,144 @@
     resize: none;
 }
 
-.search-icon {
+#search-icon {
     width: 40px;
     cursor: pointer;
+}
+
+.info-BTN {
+    width: 50px;
+    position: absolute;
+    top: -50px;
+    right: -10px;
+    cursor: pointer;
+}
+
+.infoFild {
+    width: 300px;
+    height: 88px;
+    position: absolute;
+    top: -100px;
+    right: 70px;
+    background-color: #ffffff;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 15px;
+    padding-left: 5px;
+}
+
+.info {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+/* Button Area */
+.button-area {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#loadAllBTN {
+    width: 87%;
+    height: 40px;
+    font-size: 22px;
+    font-weight: 900;
+    background-image: url(../img/bg-blue.png);
+    background-size: cover;
+    background-position: bottom;
+    background-position-y: 65px;
+    border: 0;
+    border-radius: 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.type-buttons {
+    width: 95%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.button {
+    width: 45%;
+    height: fit-content;
+    position: relative;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+.type-button {
+    width: 100%;
+    height: 55px;
+    object-fit: cover;
+    object-position: bottom;
+    border-radius: 15px;
+}
+
+.BTN-name-BG {
+    font-size: 25px;
+    font-weight: 800;
+    font-family: 'pokemon_solidnormal';
+    background-color: yellow;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.BTN-name {
+    font-size: 25px;
+    font-weight: 900;
+    font-family: 'pokemon_hollownormal';
+    background-color: blue;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.warning {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.attention {
+    font-size: 15px;
+    font-weight: 800;
 }
 
 /* Dark and Light Mode */
