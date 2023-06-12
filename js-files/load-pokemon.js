@@ -15,8 +15,9 @@ let scroll = false;
 async function loadPokedex() {
     let imLoading = document.getElementById('onloading');
     imLoading.innerHTML = /*html */ `<span class="loading">Loading!</span>`;
+    adjustElementToScreen('navinterface');
 
-    for (let p = pokemonToLoad; p <= loadedPokemons; p++) { // 1011
+    for (let p = pokemonToLoad; p <= loadedPokemons; p++) {
         const pokemon = p;
         await loadPokemon(pokemon);
         document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} Pokemon Loaded</span>`;
@@ -34,8 +35,11 @@ async function loadPokedex() {
         loadedPokemons += 10;
         pokemonToLoad += 25;
     } else if (pokemonToLoad == 1001) {
-        loadedPokemons = 1011;        
+        loadedPokemons = 1011;
+        scroll = true;
+        infoArea.innerHTML = /*html */ `All Pokemon loaded`;
     }
+    adjustElementToScreen('navinterface');
 }
 
 // Loading by Scrolling Function
@@ -50,16 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
             await loadPokedex();
             scroll = false;
             infoArea.innerHTML = /*html */ `Scroll Loading Aktive`;
-        } else {
-            scroll = true;
-            infoArea.innerHTML = /*html */ `All Pokemon loaded`;
         }
     });
 });
-// setTimeout(() => {
-// }, 5000);
-
-
 
 async function loadPokemon(pokemon) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
@@ -86,12 +83,14 @@ async function loadPokemon(pokemon) {
 async function checkURLExists(url) {
     try {
       const response = await fetch(url);
-      return response.ok; // Überprüfen, ob der Statuscode 200 (OK) ist
+      return response.ok; // Verify that the status code is 200 (OK).
     } catch (error) {
       console.error(error);
-      return false; // Fehler beim Abrufen der URL
+      return false; // Error getting URL
     }
 }
+
+// Pokemon Cards
 
 function renderPokemonCard() {
     let pokemonCard = document.getElementById('pokemonArea');
@@ -184,38 +183,5 @@ function pokemonType() {
         pokemonCardBG = 'img/bg-steel.png';
     } if (correntType == 'water') {
         pokemonCardBG = 'img/bg-water.png';
-    }
-}
-
-// Dark and Light Mode
-
-document.addEventListener("DOMContentLoaded", function () {
-    const btn1_ctn = document.getElementsByClassName("btn-container")[0];
-    const one = document.querySelector(".fas");
-    btn1_ctn.addEventListener("click", () => {
-        one.classList.toggle("fa-circle");
-        one.classList.toggle("fa-moon");
-        one.classList.toggle("active");
-        btn1_ctn.classList.toggle("changeBg");
-    });
-});
-
-let mode = 'light';
-
-function nightDay() {
-    let nightDayMode1 = document.getElementById('pokedex-BG');
-    let nightDayMode2 = document.getElementById('pokemonStats');
-    let fontColor = document.getElementById('title');
-
-    if (mode == 'light') {
-        nightDayMode1.style = 'background-image: url(img/bg-darkmode.png)';
-        nightDayMode2.style = 'background-image: url(img/bg-darkmode.png)';
-        fontColor.classList.add('font-color-white');
-        mode = 'dark';
-    } else {
-        nightDayMode1.style = 'background-image: url(img/bg-lightmode.png)';
-        nightDayMode2.style = 'background-image: url(img/bg-lightmode.png)';
-        fontColor.classList.remove('font-color-white');
-        mode = 'light'
     }
 }

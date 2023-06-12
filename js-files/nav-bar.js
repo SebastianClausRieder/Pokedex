@@ -1,5 +1,7 @@
 // Search Info Fild
+let correntTypeArray;
 let infoText = false;
+let disabled = false;
 
 function info() {
 
@@ -29,8 +31,8 @@ async function searchPokemon() {
 // Loading by Button
 
 async function loadAllPokemon() {
-    document.getElementById('loadAllBTN').disabled = true;
     remarksBevorLoad();
+    disableButtons();
 
     loadedPokemons = 1010;
     pokemonToLoad = 1;
@@ -40,24 +42,32 @@ async function loadAllPokemon() {
     loadedPokemons = 1011;
 
     document.getElementById('info').innerHTML = /*html */ `All Pokemon loaded`;
-    document.getElementById('loadAllBTN').disabled = false;
+    disableButtons();
 }
 
 // Loading by Type
 
 async function showType(type) {
-    document.getElementById(type).classList.add('disabled');
-    document.getElementById('onloading').innerHTML = /*html */ `<span class="loading">Loading!</span>`;
-    remarksBevorLoad();
+    let onLoading = document.getElementById('onloading');
+    onLoading.innerHTML = /*html */ `<span class="loading">Loading!</span>`;
+    remarks();
+    disableButtons();
 
     loadedPokemons = 0;
     pokemonToLoad = 0;
 
     let url = `https://pokeapi.co/api/v2/type/${type}`;
-    let response = await fetch(url);
-    let typedPokemon = await response.json();
-    const correntTypeArray = typedPokemon['pokemon'];
+    let typedPokemon = await fetchData(url);
+    correntTypeArray = typedPokemon['pokemon'];
 
+    await loadCorrentType(type);
+
+    onLoading.innerHTML = /*html */ ``;
+    document.getElementById('info').innerHTML = /*html */ `All ${type} Pokemon loaded`;
+    disableButtons();
+}
+
+async function loadCorrentType(type) {
     for (let pt = 0; pt < correntTypeArray.length; pt++) {
         const pokemonByType = correntTypeArray[pt];
         let pokemonByTypeURL = pokemonByType['pokemon']['url'];
@@ -66,20 +76,70 @@ async function showType(type) {
         let pokemonByTypeID = correntTypedPokemon['id'];
 
         await loadPokemon(pokemonByTypeID);
-     
+
         document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} ${type} Pokemon Loaded</span>`;
     }
-
-    document.getElementById('onloading').innerHTML = /*html */ ``;
-    document.getElementById('info').innerHTML = /*html */ `All ${type} Pokemon loaded`;
-    document.getElementById(type).classList.remove('disabled');
 }
 
-// Remarks
+// Remarks and disables
 
-function remarksBevorLoad() {
+function remarks() {
     document.getElementById('info').innerHTML = /*html */ `Scroll Loading Timeout`;
     document.getElementById('pokemonArea').innerHTML = ``;
     scroll = true;
     aktuallLoadedPokemon = 0;
+}
+
+function disableButtons() {
+    let containers = document.getElementsByClassName('button');
+
+    if (!disabled) {
+        document.getElementById('loadAllBTN').disabled = true;
+        for (let i = 0; i < containers.length; i++) {
+            containers[i].classList.add('disabled');
+        }
+        disabled = true;
+    } else {
+        document.getElementById('loadAllBTN').disabled = false;
+        for (let i = 0; i < containers.length; i++) {
+            containers[i].classList.remove('disabled');
+        }
+        disabled = false;
+    }
+}
+
+// Dark and Light Mode
+
+document.addEventListener("DOMContentLoaded", function () {
+    const btn1_ctn = document.getElementsByClassName("btn-container")[0];
+    const one = document.querySelector(".fas");
+    btn1_ctn.addEventListener("click", () => {
+        one.classList.toggle("fa-circle");
+        one.classList.toggle("fa-moon");
+        one.classList.toggle("active");
+        btn1_ctn.classList.toggle("changeBg");
+    });
+});
+
+let mode = 'light';
+
+function nightDay() {
+    let nightDayMode1 = document.getElementById('pokedex-BG');
+    let nightDayMode2 = document.getElementById('pokemonStats');
+    let navBG = document.getElementById('navinterface');
+    let fontColor = document.getElementById('title');
+
+    if (mode == 'light') {
+        nightDayMode1.style = 'background-image: url(img/bg-darkmode.png)';
+        nightDayMode2.style = 'background-image: url(img/bg-darkmode.png)';
+        navBG.classList.add('bg-dark');
+        fontColor.classList.add('font-color-white');
+        mode = 'dark';
+    } else {
+        nightDayMode1.style = 'background-image: url(img/bg-lightmode.png)';
+        nightDayMode2.style = 'background-image: url(img/bg-lightmode.png)';
+        navBG.classList.remove('bg-dark');
+        fontColor.classList.remove('font-color-white');
+        mode = 'light'
+    }
 }

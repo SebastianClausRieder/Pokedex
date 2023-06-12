@@ -446,7 +446,7 @@ canvas {
 }
 
 .playable-edition {
-    width: 140px;
+    min-width: 140px;
     height: 35px;
     display: flex;
     justify-content: center;
