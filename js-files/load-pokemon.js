@@ -15,7 +15,10 @@ let scroll = false;
 async function loadPokedex() {
     let imLoading = document.getElementById('onloading');
     imLoading.innerHTML = /*html */ `<span class="loading">Loading!</span>`;
-    adjustElementToScreen('navinterface');
+
+    if (window.innerWidth > 1000) {
+        adjustElementToScreen('navinterface');
+    }
 
     for (let p = pokemonToLoad; p <= loadedPokemons; p++) {
         const pokemon = p;
@@ -39,7 +42,6 @@ async function loadPokedex() {
         scroll = true;
         infoArea.innerHTML = /*html */ `All Pokemon loaded`;
     }
-    adjustElementToScreen('navinterface');
 }
 
 // Loading by Scrolling Function

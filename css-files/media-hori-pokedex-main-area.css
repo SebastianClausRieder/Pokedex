@@ -1,0 +1,156 @@
+@media all and (min-width: 601px) and (max-width: 1000px) {
+    ::-webkit-scrollbar {
+        background-color: #ffffff00;
+        width: 0px;
+        height: 0px;
+    }
+
+    /* Navigation Interface */
+    
+    #navinterface {
+        width: 150px;
+        height: 100%;
+        margin-left: 10px;
+    }
+
+    .searcharea {
+        width: 95%;
+        height: 165px;
+        border-radius: 0px 0px 20px 20px;
+    }
+
+    .pokedex-title1, .pokedex-title2 {
+        font-size: 25px;
+    }
+
+    .pokedex-title2 {
+        left: 5px;
+    }
+
+    .searchtext {
+        font-size: 13px;
+    }
+
+    .search-input {
+        height: 30px;
+    }
+
+    #searchfild {
+        width: 70%;
+        height: 20px;
+        font-size: 15px;
+        margin-left: -2px;
+    }
+
+    #search-icon {
+        width: 20px;
+        margin-left: -5px;
+    }
+
+    .info-BTN {
+        width: 25px;
+        top: -30px;
+        right: -3px;
+    }
+    .infoFild {
+        width: 110px;
+        height: 50px;
+        top: -53px;
+        right: 23px;
+    }
+
+    .info {
+        font-size: 7px;
+    }
+
+    /* Button Area */
+
+    .button-area {
+        height: 55%;
+        margin-top: 10px;
+    }
+
+    #loadAllBTN {
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .type-buttons {
+        height: 85%;
+        width: 98%;
+        overflow: scroll;
+    }
+
+    .button {
+        width: 40%;
+        height: 25px;
+    }
+
+    .type-button {
+        height: 25px;
+        object-position: bottom;
+    }
+
+    .BTN-name-BG, .BTN-name {
+        font-size: 10px;
+    }
+
+    .attention {
+        font-size: 7px;
+    }
+
+    /* Pokemon Area */
+
+    .pokedex-main-area {
+        width: calc(100% - 200px);
+    }
+
+    .title {
+        font-size: 25px;
+    }
+
+    /* Pokedex Cards */
+
+    .pokemon-card {
+        width: 100px;
+        height: 60px;
+        background-size: 300px;
+        background-position-x: 105px;
+        background-position-y: 70px;
+    }
+
+    .name-id {
+        height: 15px;
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+    .types-image {
+        height: 40px;
+    }
+
+    #types {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .poke-image {
+        width: 40px;
+    }
+
+    /* Info Line */
+
+    .message-board, #pokemonInArea, #onloading, .infoArea {
+        height: 10px;
+    }
+
+    .in-area, .loading, #info {
+        font-size: 9px;
+    }
+
+    /* Dark and Light Mode */
+
+    .dark-light-mode {
+        transform: scale(0.5);
+    }
+}

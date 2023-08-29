@@ -45,8 +45,8 @@ async function openPokedex(clickedPokemon) {
     controlPad.innerHTML = padTemp();
     pokemonStats.innerHTML = showPokemonTemp();
     evolutionDetermination();
-    adjustElementToScreen('status-area');
     statsRadarChart();
+    adjustElementToScreen('status-area');
 }
 
 // Pokedex Right Side
@@ -432,7 +432,7 @@ function adjustElementToScreen(elementId) {
     // Skalierung bei Fenstergrößenänderungen aktualisieren
     window.addEventListener('resize', scaleElement);
 
-    // Skalierung initial durchführen
+    // Skalierung initial durchführenß
     scaleElement();
 }
 
@@ -483,6 +483,54 @@ function statsRadarChart() {
     Chart.defaults.font.size = 16;
     Chart.defaults.font.weight = 700;
 }
+
+function statsRadarChartResponsiv() {
+
+    let options = {
+        type: 'radar',
+        data: {
+            labels: ['HP', 'Attack', 'Defense', 'Speed', 'SP.Def', 'SP.Atk'],
+            datasets: [{
+                label: 'Pokemon Stats',
+                data: [],
+                backgroundColor: 'rgba(101, 15, 181, 0.3)', // Hintergrundfarbe des Charts
+                borderColor: 'rgba(101, 15, 181, 0.3)', // Farbe der Linie
+                borderWidth: 0.5, // Dicke der Linie
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    angleLines: {
+                        display: false
+                    },
+                    suggestedMin: 1,
+                    pointLabels: {
+                        font: {
+                            size: 9,
+                            weight: 700
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for (let ps = 0; ps < 6; ps++) {
+        options.data.datasets[0].data[ps] = showPokemon['stats'][ps]['base_stat'];
+        additionalLabels.push(`${showPokemon['stats'][ps]['base_stat']}`);
+    }
+
+    options.data.labels = options.data.labels.map((label, index) => `${label}\n${additionalLabels[index]}`);
+
+    let ctx = document.getElementById('radarChart').getContext('2d');
+    new Chart(ctx, options);
+
+    Chart.defaults.font.size = 9;
+    Chart.defaults.font.weight = 700;
+}
+
+// Undefine Global Variables
 
 function undefineGlobalVariables() {
     evoPokemon1 = undefined;

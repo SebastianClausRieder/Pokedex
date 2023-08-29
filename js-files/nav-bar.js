@@ -119,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
         one.classList.toggle("active");
         btn1_ctn.classList.toggle("changeBg");
     });
+
+    checkWindowWidth();
 });
 
 let mode = 'light';
@@ -141,5 +143,40 @@ function nightDay() {
         navBG.classList.remove('bg-dark');
         fontColor.classList.remove('font-color-white');
         mode = 'light'
+    }
+}
+
+function checkWindowWidth() {
+    let windowWidth = this.window.innerWidth;
+    let darkLightMain = document.getElementById('dark-light-mode-main');
+    let darkLightResponsive = document.getElementById('dark-light-mode-responsive');
+
+    if (windowWidth < 601) {
+        darkLightMain.classList.add('d-none');
+        darkLightResponsive.classList.remove('d-none');
+    } else {
+        darkLightMain.classList.remove('d-none');
+        darkLightResponsive.classList.add('d-none');
+    }
+}
+
+// Type Menu
+
+let menuOpen = false;
+
+function showTypeBTN() {
+    let pokeballClose = document.getElementById('menu-btn-close');
+    let pokeballOpen = document.getElementById('menu-btn-open');
+    let typeBTNMenu = document.getElementById('button-area');
+    if (!menuOpen) {
+        pokeballClose.classList.add('d-none');
+        pokeballOpen.classList.remove('d-none');
+        typeBTNMenu.classList.add('d-show');
+        menuOpen = true;
+    } else {
+        pokeballClose.classList.remove('d-none');
+        pokeballOpen.classList.add('d-none');
+        typeBTNMenu.classList.remove('d-show');
+        menuOpen = false;
     }
 }

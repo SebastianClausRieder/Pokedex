@@ -1,0 +1,272 @@
+@media all and (max-width: 600px) {
+
+
+    #status-area {
+        width: 516px;
+        height: fit-content;
+    }
+
+    .pokedex {
+        width: 500px;
+        height: fit-content;
+        flex-direction: column-reverse;
+    }
+
+    /* Left Side */
+
+    .left-side {
+        width: 450px;
+        height: 250px;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    /* Above */
+
+    .above {
+        width: 41px;
+        height: 80%;
+        flex-direction: column-reverse;
+        border: 0;
+        margin: 0;
+    }
+
+    .cam-contain {
+        width: auto;
+        height: 41px;
+        transform: rotate(270deg);
+    }
+
+    .cam {
+        width: 25px;
+        height: 25px;
+        border: 2px solid white;
+    }
+
+    .cam-reflection {
+        width: 8px;
+        height: 8px;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+    .leds {
+        width: 33px;
+        height: 40px;
+    }
+
+    .led-r {
+        width: 6px;
+        height: 6px;
+    }
+
+    .led-y {
+        width: 6px;
+        height: 6px;
+    }
+
+    .led-g {
+        width: 6px;
+        height: 6px;
+    }
+
+    .back-button {
+        width: 41px;
+        height: 41px;
+    }
+
+    .off-button {
+        width: 25px;
+        cursor: pointer;
+    }
+
+    /* Center */
+
+    .center {
+        width: 275px;
+        height: 100%;
+    }
+
+    .display-border {
+        width: 218px;
+        height: 183px;
+        border-radius: 15px 15px 15px 35px;
+    }
+
+    .display-leds {
+        width: 33px;
+        height: 13px;
+    }
+
+    .display-led {
+        width: 6px;
+        height: 6px;
+    }
+
+    #display {
+        width: 150px;
+        height: 150px;
+    }
+
+    .selectet-pokemon {
+        width: 133px;
+    }
+
+    .display-below {
+        width: 65%;
+        height: 20px;
+    }
+
+    .display-below-led {
+        width: 10px;
+        height: 10px;
+    }
+
+    .display-speaker {
+        width: 16px;
+    }
+
+    /* Below */
+
+    .below {
+        width: 120px;
+        height: 90%;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .left-circle-button {
+        width: 16px;
+        height: 16px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .center-contain {
+        width: 95%;
+        height: 50%;
+        justify-content: center;
+    }
+
+    .button-contain {
+        width: 90%;
+        height: 16px;
+    }
+
+    .left-line-button {
+        width: 25px;
+        height: 5px;
+    }
+
+    .right-line-button {
+        width: 25px;
+        height: 5px;
+    }
+
+    .green-display {
+        width: 95%;
+        height: 65px;
+    }
+
+    #pokemonGDName {
+        font-size: 15px;
+    }
+
+    #control-pad-image {
+        height: 35%;
+    }
+
+    .right-control-pad {
+        width: 58px;
+    }
+
+    .arrow-left {
+        width: 16px;
+        height: 11px;
+    }
+
+    .arrow-right {
+        width: 16px;
+        height: 11px;
+    }
+
+    /* Right Side */
+
+    #right-side {
+        width: 450px;
+        height: 350px;
+        border-left: 2px solid black;
+    }
+
+    .pixel-image-ID {
+        height: 41px;
+    }
+
+    .pixel-image {
+        height: 33px;
+    }
+
+    .pokedex-pokemon-name {
+        font-size: 15px;
+    }
+
+    .pokedex-poke-id {
+        font-size: 17px;
+    }
+
+    canvas {
+        width: 250px !important;
+        height: 250px !important;
+        transform: scale(0.7);
+        margin-top: -40px;
+    }
+    
+    .playable-skills {
+        height: 33px;
+        margin-top: -45px;
+    }
+
+    .playable, .skills {
+        min-width: 115px;
+        height: 18px;
+        font-size: 8px;
+    }
+
+    .belowContainer {
+        height: 82px;
+        margin-top: -5px;
+    }
+
+    .close-btn {
+        width: 9px;
+        height: 8.5px;
+        font-size: 9px;
+    }
+
+    #lowerContain {
+        max-height: 82px;
+        background-color: blueviolet;
+    }
+
+    .playable-edition {
+        min-width: 65px;
+        height: 12px;
+        font-size: 8px;
+    }
+
+    .evolution {
+        width: 40px;
+        margin-bottom: -8px;
+    }
+
+    .evo-arrow {
+        width: 20px;
+    }
+
+    .eevees-evos {
+        width: 200px;
+    }
+
+    .poke-evo-name {
+        font-size: 8px;
+    }
+}

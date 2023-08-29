@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="css-files/pokedex-nav.css">
     <link rel="stylesheet" href="css-files/pokedex-main-area.css">
     <link rel="stylesheet" href="css-files/pokemonstats.css">
+    <link rel="stylesheet" href="css-files/media-hori-pokedex-main-area.css">
+    <link rel="stylesheet" href="css-files/media-verti-pokedex-main-area.css">
+    <link rel="stylesheet" href="css-files/media-hori-pokemonstats.css">
+    <link rel="stylesheet" href="css-files/media-verti-pokemonstats.css">
 
     <!-- Java Script -->
     <script src="js-files/load-pokemon.js"></script>
@@ -36,8 +40,8 @@
         /* Scrollbalcken */
         /* width */
         ::-webkit-scrollbar {
-            background-color: #ffffff;
-            width: 10px;
+            background-color: #ffffff00;
+            width: 5px;
             height: 0px;
         }
 
@@ -58,11 +62,11 @@
         }
 
         .d-none {
-            display: none;
+            display: none !important;
         }
 
         .d-show {
-            display: flex;
+            display: flex !important;
         }
 
         .font-color-white {
@@ -95,13 +99,23 @@
                     <img src="img/icons/info.png" class="info-BTN" onclick="info()">
                     <div id="infoFild" class="infoFild font-source-sans-pro">
                         <li class="info">ID from 1 to 1010</li>
-                        <li class="info">and not 001 or #001</li>
+                        <li class="info">not 001 or #001</li>
                         <li class="info">Correct Pokemon names only</li>
-                        <li class="info">and only in english</li>
+                        <li class="info">only in english</li>
+                    </div>
+                </div>
+                <div id="responsive-btn-contain">
+                    <img src="img/pokeball.png" id="menu-btn-close" class="menu-btn-img" onclick="showTypeBTN()">
+                    <img src="img/open-pokeball.png" id="menu-btn-open" class="menu-btn-img d-none" onclick="showTypeBTN()">
+                    <div id="dark-light-mode-responsive" class="dark-light-mode">
+                        <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
+                        <div class="btn-container" onclick="nightDay()">
+                            <i class="fas fa-circle"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="button-area font-source-sans-pro">
+            <div id="button-area" class="button-area font-source-sans-pro">
                 <button id="loadAllBTN" onclick="loadAllPokemon()">Load all Pokemon</button>
                 <div class="type-buttons">
                     <div id="bug" class="button" onclick="showType('bug')">
@@ -275,7 +289,7 @@
         </div>
     </div>
 
-    <div class="dark-light-mode">
+    <div id="dark-light-mode-main" class="dark-light-mode">
         <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
         <div class="btn-container" onclick="nightDay()">
             <i class="fas fa-circle"></i>

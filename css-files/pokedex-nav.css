@@ -4,7 +4,7 @@
     background-size: cover;
     background-position: right top;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -25,21 +25,21 @@
 }
 
 .searcharea {
-    width: 95%;
-    height: 29%;
+    width: 100%;
+    height: 30%;
     background-image: url(../img/bg-darker-red.png);
     background-size: cover;
     background-position-x: 470px;
     border-radius: 0px 0px 35px 35px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-left: 25px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
     position: relative;
 }
 
-.pokedex-title1 {
+.pokedex-title1, .pokedex-title2 {
     width: 93%;
     font-family: 'pokemon_solidnormal';
     font-size: 60px;
@@ -54,22 +54,14 @@
 }
 
 .pokedex-title2 {
-    width: 93%;
     font-family: 'pokemon_hollownormal';
-    font-size: 60px;
-    text-align: center;
     background-color: blue;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
     position: absolute;
     left: 13px;
-    margin-bottom: 0;
-    margin-top: 10px;
 }
 
 .searchtext {
+    width: 90%;
     font-size: 30px;
     font-weight: 600;
     color: antiquewhite;
@@ -81,10 +73,9 @@
     height: 52px;
     position: relative;
     border-radius: 25px;
-    margin-bottom: 15px;
     background-color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -131,11 +122,24 @@
     font-weight: 800;
 }
 
+#responsive-btn-contain {
+    width: 65%;
+    height: 25px;
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu-btn-img {
+    width: 35px;
+    cursor: pointer;
+}
+
 /* Button Area */
 
 .button-area {
     width: 100%;
-    height: fit-content;
+    height: 67%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -169,10 +173,12 @@
 
 .button {
     width: 45%;
-    height: fit-content;
+    height: 60px;
     position: relative;
+    border-radius: 25px;
     margin: 5px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .button.disabled {
@@ -182,13 +188,12 @@
 
 .type-button {
     width: 100%;
-    height: 55px;
+    height: 60px;
     object-fit: cover;
     object-position: bottom;
-    border-radius: 15px;
 }
 
-.BTN-name-BG {
+.BTN-name-BG, .BTN-name {
     font-size: 25px;
     font-weight: 800;
     font-family: 'pokemon_solidnormal';
@@ -208,27 +213,13 @@
 }
 
 .BTN-name {
-    font-size: 25px;
-    font-weight: 900;
     font-family: 'pokemon_hollownormal';
     background-color: blue;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
 }
 
 .warning {
     width: 100%;
-    height: 20px;
+    height: 3%;
     display: flex;
     justify-content: center;
     align-items: center;

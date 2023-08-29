@@ -24,6 +24,77 @@
     overflow: scroll;
 }
 
+/* Pokedex Cards */
+
+.pokemon-card {
+    width: 175px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-size: 525px;
+    background-position-x: 180px;
+    background-position-y: 135px;
+    border-radius: 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.1);
+}
+
+.name-id {
+    width: 90%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.poke-name {
+    color: white;
+    text-transform: capitalize;
+}
+
+.poke-id {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+.types-image {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#types {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    font-size: 18px;
+}
+
+.type {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 900;
+    text-transform: capitalize;
+}
+
+.poke-image {
+    width: 80px;
+}
+
+/* Info Line */
+
 .message-board {
     width: 100%;
     height: 20px;
@@ -74,79 +145,4 @@
     font-weight: 900;
     color: #fa6555;
     text-transform: capitalize;
-}
-
-/* Pokedex Cards */
-
-.pokemon-card {
-    width: 175px;
-    height: 125px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background-size: 525px;
-    background-position-x: 180px;
-    background-position-y: 135px;
-    border-radius: 15px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-.pokemon-card:hover {
-    transform: scale(1.1);
-}
-
-.name-id {
-    width: 90%;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    font-size: 20px;
-    font-weight: 800;
-    margin-top: 4px;
-}
-
-.poke-name {
-    display: block;
-    color: white;
-    text-transform: capitalize;
-}
-
-.poke-id {
-    color: rgba(0, 0, 0, 0.35);
-}
-
-.types-image {
-    width: 90%;
-    height: 75px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#types {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.type {
-    display: block;
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 900;
-}
-
-.type:first-letter {    
-    text-transform: uppercase;
-}
-
-.poke-image {
-    width: 80px;
 }

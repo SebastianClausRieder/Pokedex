@@ -1,0 +1,101 @@
+@media all and (max-width: 600px) {
+    ::-webkit-scrollbar {
+        background-color: #ffffff00;
+        width: 0px;
+        height: 0px;
+    }
+    
+    /* Navigation Interface */
+
+    #pokedex-BG {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #navinterface {
+        width: 325px;
+        margin-left: 10px;
+        border-radius: 0px 0px 35px 35px;
+    }
+
+    .searcharea {
+        height: 310px;
+    }
+
+    .searchtext {
+        font-size: 25px;
+    }
+
+    #searchfild {
+        width: 75%;
+    }
+
+    .infoFild {
+        top: -140px;
+        right: 0;
+    }
+
+    #responsive-btn-contain {
+        display: flex;
+    }
+
+    /* Button Area */
+
+    .button-area {
+        width: 95%;
+        height: 250px;
+        display: none;
+        position: fixed;
+        top: 310px;
+        border-radius: 15px;
+        background-color: #FFFFFF;
+        overflow: scroll;
+        z-index: 99;
+    }
+
+    .warning {
+        display: none;
+    }
+
+    /* Pokedex Main-Area */
+
+    .pokedex-main-area {
+        width: 100%;
+        height: 64vh;
+        margin-top: 25px;
+    }
+
+    #pokemonArea {
+        height: fit-content;
+    }
+
+    .pokemon-card {
+        width: 150px;
+        height: 110px;
+    }
+
+    .name-id {
+        font-size: 17px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .message-board {
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    #pokemonInArea, #onloading, .infoArea {
+        width: 95%;
+    }
+
+    /* Dark and Light Mode */
+    
+    .dark-light-mode {
+        position: absolute;
+        right: 45px;
+        top: 273px;
+    }
+}
