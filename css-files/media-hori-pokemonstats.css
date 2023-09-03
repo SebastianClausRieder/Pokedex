@@ -173,11 +173,13 @@
     .arrow-left {
         width: 16px;
         height: 11px;
+        top: 27.4px;
     }
 
     .arrow-right {
         width: 16px;
         height: 11px;
+        top: 27.4px;
     }
 
     /* Right Side */

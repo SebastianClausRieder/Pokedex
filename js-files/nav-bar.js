@@ -17,14 +17,27 @@ function info() {
 // Loading with Search Function
 
 async function searchPokemon() {
+    resetPokemonCounts();
+    clearPokemonArea();
+
+    const inputField = document.getElementById('searchfild').value.toLowerCase();
+    await loadPokemon(inputField);
+
+    updatePokemonCounter();
+}
+
+function resetPokemonCounts() {
     aktuallLoadedPokemon = 0;
     loadedPokemons = 0;
     pokemonToLoad = 0;
-    document.getElementById('pokemonArea').innerHTML = ``;
-    document.getElementById('info').innerHTML = ``;
-    let inputFild = document.getElementById('searchfild').value;
-    let input = inputFild.toLowerCase();
-    await loadPokemon(input);
+}
+
+function clearPokemonArea() {
+    document.getElementById('pokemonArea').innerHTML = '';
+    document.getElementById('info').innerHTML = '';
+}
+
+function updatePokemonCounter() {
     document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} Pokemon Loaded</span>`;
 }
 
@@ -53,8 +66,7 @@ async function showType(type) {
     remarks();
     disableButtons();
 
-    loadedPokemons = 0;
-    pokemonToLoad = 0;
+    resetPokemonCounts();
 
     let url = `https://pokeapi.co/api/v2/type/${type}`;
     let typedPokemon = await fetchData(url);
@@ -63,8 +75,12 @@ async function showType(type) {
     await loadCorrentType(type);
 
     onLoading.innerHTML = /*html */ ``;
-    document.getElementById('info').innerHTML = /*html */ `All ${type} Pokemon loaded`;
+    displayInfoMessage(`All ${type} Pokemon loaded`);
     disableButtons();
+}
+
+function displayInfoMessage(message) {
+    document.getElementById('info').innerHTML = /*html */ message;
 }
 
 async function loadCorrentType(type) {
@@ -77,8 +93,12 @@ async function loadCorrentType(type) {
 
         await loadPokemon(pokemonByTypeID);
 
-        document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} ${type} Pokemon Loaded</span>`;
+        updatePokemonCounter(type);
     }
+}
+
+function updatePokemonCounter(type) {
+    document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} ${type} Pokemon Loaded</span>`;
 }
 
 // Remarks and disables
@@ -91,26 +111,49 @@ function remarks() {
 }
 
 function disableButtons() {
-    let containers = document.getElementsByClassName('button');
+    const containers = document.getElementsByClassName('button');
+    const loadAllBTN = document.getElementById('loadAllBTN');
+    const isDisabled = !loadAllBTN.disabled;
 
-    if (!disabled) {
-        document.getElementById('loadAllBTN').disabled = true;
-        for (let i = 0; i < containers.length; i++) {
-            containers[i].classList.add('disabled');
+    loadAllBTN.disabled = isDisabled;
+
+    for (const container of containers) {
+        if (isDisabled) {
+            container.classList.add('disabled');
+        } else {
+            container.classList.remove('disabled');
         }
-        disabled = true;
-    } else {
-        document.getElementById('loadAllBTN').disabled = false;
-        for (let i = 0; i < containers.length; i++) {
-            containers[i].classList.remove('disabled');
-        }
-        disabled = false;
     }
 }
 
 // Dark and Light Mode
 
+function checkWindowWidth() {
+    let windowWidth = this.window.innerWidth;
+    let darkLightMain = document.getElementById('dark-light-mode-main');
+    let darkLightResponsive = document.getElementById('dark-light-mode-responsive');
+    
+    const btnContainer = document.createElement('div');
+    btnContainer.className = 'btn-container';
+    btnContainer.onclick = nightDay;
+    
+    const circleIcon = document.createElement('i');
+    circleIcon.className = 'fas fa-circle';
+    
+    btnContainer.appendChild(circleIcon);
+    
+    darkLightResponsive.innerHTML = '';
+    darkLightMain.innerHTML = '';
+    
+    if (windowWidth < 601) {
+        darkLightResponsive.appendChild(btnContainer);
+    } else {
+        darkLightMain.appendChild(btnContainer);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+    checkWindowWidth()
     const btn1_ctn = document.getElementsByClassName("btn-container")[0];
     const one = document.querySelector(".fas");
     btn1_ctn.addEventListener("click", () => {
@@ -119,44 +162,37 @@ document.addEventListener("DOMContentLoaded", function () {
         one.classList.toggle("active");
         btn1_ctn.classList.toggle("changeBg");
     });
-
-    checkWindowWidth();
 });
 
 let mode = 'light';
 
 function nightDay() {
-    let nightDayMode1 = document.getElementById('pokedex-BG');
-    let nightDayMode2 = document.getElementById('pokemonStats');
-    let navBG = document.getElementById('navinterface');
-    let fontColor = document.getElementById('title');
+    const nightDayMode1 = document.getElementById('pokedex-BG');
+    const nightDayMode2 = document.getElementById('pokemonStats');
+    const navBG = document.getElementById('navinterface');
+    const fontColor = document.getElementById('title');
 
-    if (mode == 'light') {
-        nightDayMode1.style = 'background-image: url(img/bg-darkmode.png)';
-        nightDayMode2.style = 'background-image: url(img/bg-darkmode.png)';
+    function applyDarkMode() {
+        nightDayMode1.style.backgroundImage = 'url(img/bg-darkmode.png)';
+        nightDayMode2.style.backgroundImage = 'url(img/bg-darkmode.png)';
         navBG.classList.add('bg-dark');
         fontColor.classList.add('font-color-white');
-        mode = 'dark';
-    } else {
-        nightDayMode1.style = 'background-image: url(img/bg-lightmode.png)';
-        nightDayMode2.style = 'background-image: url(img/bg-lightmode.png)';
+    }
+
+    function applyLightMode() {
+        nightDayMode1.style.backgroundImage = 'url(img/bg-lightmode.png)';
+        nightDayMode2.style.backgroundImage = 'url(img/bg-lightmode.png)';
         navBG.classList.remove('bg-dark');
         fontColor.classList.remove('font-color-white');
-        mode = 'light'
     }
-}
 
-function checkWindowWidth() {
-    let windowWidth = this.window.innerWidth;
-    let darkLightMain = document.getElementById('dark-light-mode-main');
-    let darkLightResponsive = document.getElementById('dark-light-mode-responsive');
-
-    if (windowWidth < 601) {
-        darkLightMain.classList.add('d-none');
-        darkLightResponsive.classList.remove('d-none');
+    // Überprüfen und Umschalten des Modus
+    if (mode === 'light') {
+        applyDarkMode();
+        mode = 'dark';
     } else {
-        darkLightMain.classList.remove('d-none');
-        darkLightResponsive.classList.add('d-none');
+        applyLightMode();
+        mode = 'light';
     }
 }
 
@@ -165,18 +201,12 @@ function checkWindowWidth() {
 let menuOpen = false;
 
 function showTypeBTN() {
-    let pokeballClose = document.getElementById('menu-btn-close');
-    let pokeballOpen = document.getElementById('menu-btn-open');
-    let typeBTNMenu = document.getElementById('button-area');
-    if (!menuOpen) {
-        pokeballClose.classList.add('d-none');
-        pokeballOpen.classList.remove('d-none');
-        typeBTNMenu.classList.add('d-show');
-        menuOpen = true;
-    } else {
-        pokeballClose.classList.remove('d-none');
-        pokeballOpen.classList.add('d-none');
-        typeBTNMenu.classList.remove('d-show');
-        menuOpen = false;
-    }
+    const pokeballClose = document.getElementById('menu-btn-close');
+    const pokeballOpen = document.getElementById('menu-btn-open');
+    const typeBTNMenu = document.getElementById('button-area');
+
+    pokeballClose.classList.toggle('d-none');
+    pokeballOpen.classList.toggle('d-none');
+    typeBTNMenu.classList.toggle('d-show');
+    menuOpen = !menuOpen;
 }

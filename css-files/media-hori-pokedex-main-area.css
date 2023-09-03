@@ -102,7 +102,7 @@
     /* Pokemon Area */
 
     .pokedex-main-area {
-        width: calc(100% - 200px);
+        width: calc(100% - 150px);
     }
 
     .title {

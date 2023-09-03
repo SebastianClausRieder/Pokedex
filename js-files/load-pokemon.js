@@ -21,14 +21,21 @@ async function loadPokedex() {
     }
 
     for (let p = pokemonToLoad; p <= loadedPokemons; p++) {
-        const pokemon = p;
-        await loadPokemon(pokemon);
-        document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} Pokemon Loaded</span>`;
+        await loadPokemon(p);
+        await updatePokemonCounter();
     } 
         
     imLoading.innerHTML = /*html */ ``;
 
-	if (pokemonToLoad <= 50) {
+    await updatePokemonLoadCounts();
+}
+
+async function updatePokemonCounter() {
+    document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} Pokemon Loaded</span>`;
+}
+
+async function updatePokemonLoadCounts() {
+    if (pokemonToLoad <= 50) {
         loadedPokemons += 25;
         pokemonToLoad += 50;        
     } else if (pokemonToLoad <= 975) {
@@ -43,6 +50,7 @@ async function loadPokedex() {
         infoArea.innerHTML = /*html */ `All Pokemon loaded`;
     }
 }
+
 
 // Loading by Scrolling Function
 
@@ -147,43 +155,27 @@ function pokemonTypeAvailable() {
 // Type determination
 
 function pokemonType() {
-    let correntType = correntPokemon['types'][0]['type']['name'];
+    const typeToBG = {
+        'bug': 'img/bg-bug.png',
+        'dark': 'img/bg-dark.png',
+        'dragon': 'img/bg-dragon.png',
+        'electric': 'img/bg-electric.png',
+        'fairy': 'img/bg-fairy.png',
+        'fighting': 'img/bg-fighting.png',
+        'fire': 'img/bg-fire.png',
+        'flying': 'img/bg-flying.png',
+        'ghost': 'img/bg-ghost.png',
+        'grass': 'img/bg-grass.png',
+        'ground': 'img/bg-ground.png',
+        'ice': 'img/bg-ice.png',
+        'normal': 'img/bg-normal.png',
+        'poison': 'img/bg-poison.png',
+        'psychic': 'img/bg-psychic.png',
+        'rock': 'img/bg-rock.png',
+        'steel': 'img/bg-steel.png',
+        'water': 'img/bg-water.png',
+    };
 
-      if (correntType == 'bug') {
-        pokemonCardBG = 'img/bg-bug.png';
-    } if (correntType == 'dark') {
-        pokemonCardBG = 'img/bg-dark.png';
-    } if (correntType == 'dragon') {
-        pokemonCardBG = 'img/bg-dragon.png';
-    } if (correntType == 'electric') {
-        pokemonCardBG = 'img/bg-electric.png';
-    } if (correntType == 'fairy') {
-        pokemonCardBG = 'img/bg-fairy.png';
-    } if (correntType == 'fighting') {
-        pokemonCardBG = 'img/bg-fighting.png';
-    } if (correntType == 'fire') {
-        pokemonCardBG = 'img/bg-fire.png';
-    } if (correntType == 'flying') {
-        pokemonCardBG = 'img/bg-flying.png';
-    } if (correntType == 'ghost') {
-        pokemonCardBG = 'img/bg-ghost.png';
-    } if (correntType == 'grass') {
-        pokemonCardBG = 'img/bg-grass.png';
-    } if (correntType == 'ground') {
-        pokemonCardBG = 'img/bg-ground.png';
-    } if (correntType == 'ice') {
-        pokemonCardBG = 'img/bg-ice.png';
-    } if (correntType == 'normal') {
-        pokemonCardBG = 'img/bg-normal.png';
-    } if (correntType == 'poison') {
-        pokemonCardBG = 'img/bg-poison.png';
-    } if (correntType == 'psychic') {
-        pokemonCardBG = 'img/bg-psychic.png';
-    } if (correntType == 'rock') {
-        pokemonCardBG = 'img/bg-rock.png';
-    } if (correntType == 'steel') {
-        pokemonCardBG = 'img/bg-steel.png';
-    } if (correntType == 'water') {
-        pokemonCardBG = 'img/bg-water.png';
-    }
+    const correntType = correntPokemon['types'][0]['type']['name'];
+    pokemonCardBG = typeToBG[correntType] || '';
 }

@@ -302,7 +302,7 @@
     width: 50px;
     height: 35px;
     position: absolute;
-    top: 27px;
+    top: 82px;
     left: 5px;
     cursor: pointer;
 }
@@ -311,7 +311,7 @@
     width: 50px;
     height: 35px;
     position: absolute;
-    top: 27px;
+    top: 82px;
     right: 5px;
     cursor: pointer;
 }
@@ -469,6 +469,14 @@ canvas {
 
 .evolution {
     width: 125px;
+}
+
+.evo-arrow-contain {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .evo-arrow {
