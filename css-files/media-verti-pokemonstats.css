@@ -2,12 +2,12 @@
 
 
     #status-area {
-        width: 516px;
+        width: 325px;
         height: fit-content;
     }
 
     .pokedex {
-        width: 500px;
+        width: 300px;
         height: fit-content;
         flex-direction: column-reverse;
     }
@@ -15,18 +15,19 @@
     /* Left Side */
 
     .left-side {
-        width: 450px;
-        height: 250px;
+        width: 300px;
+        height: 125px;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-evenly;
+        position: relative;
     }
 
     /* Above */
 
     .above {
-        width: 41px;
-        height: 80%;
-        flex-direction: column-reverse;
+        width: 75px;
+        height: 90%;
+        flex-direction: column;
         border: 0;
         margin: 0;
     }
@@ -34,13 +35,13 @@
     .cam-contain {
         width: auto;
         height: 41px;
-        transform: rotate(270deg);
     }
 
     .cam {
         width: 25px;
         height: 25px;
         border: 2px solid white;
+        margin: 0;
     }
 
     .cam-reflection {
@@ -83,67 +84,26 @@
     /* Center */
 
     .center {
-        width: 275px;
-        height: 100%;
-    }
-
-    .display-border {
-        width: 218px;
-        height: 183px;
-        border-radius: 15px 15px 15px 35px;
-    }
-
-    .display-leds {
-        width: 33px;
-        height: 13px;
-    }
-
-    .display-led {
-        width: 6px;
-        height: 6px;
-    }
-
-    #display {
-        width: 150px;
-        height: 150px;
-    }
-
-    .selectet-pokemon {
-        width: 133px;
-    }
-
-    .display-below {
-        width: 65%;
-        height: 20px;
-    }
-
-    .display-below-led {
-        width: 10px;
-        height: 10px;
-    }
-
-    .display-speaker {
-        width: 16px;
+        display: none;
     }
 
     /* Below */
 
     .below {
-        width: 120px;
-        height: 90%;
+        width: 200px;
+        height: 95%;
         flex-direction: column;
+        align-items: flex-end;
         margin: 0;
     }
 
     .left-circle-button {
-        width: 16px;
-        height: 16px;
-        border: 1px solid rgb(0, 0, 0);
+        display: none;
     }
 
     .center-contain {
-        width: 95%;
-        height: 50%;
+        width: 85%;
+        height: 100%;
         justify-content: center;
     }
 
@@ -163,7 +123,7 @@
     }
 
     .green-display {
-        width: 95%;
+        width: 150px;
         height: 65px;
     }
 
@@ -173,6 +133,9 @@
 
     #control-pad-image {
         height: 35%;
+        position: absolute;
+        left: 65px;
+        top: 40px;
     }
 
     .right-control-pad {
@@ -194,13 +157,14 @@
     /* Right Side */
 
     #right-side {
-        width: 450px;
-        height: 500px;
+        width: 300px;
+        height: 425px;
         border-left: 2px solid black;
     }
 
     .pixel-image-ID {
         height: 50px;
+        margin: 0;
     }
 
     .pixel-image {
@@ -218,42 +182,33 @@
     canvas {
         width: 250px !important;
         height: 250px !important;
-        transform: scale(0.9);
-        margin-top: 10px;
+        margin: 0px;
     }
     
     .playable-skills {
         height: 33px;
-        margin-top: -15px;
     }
 
     .playable, .skills {
         min-width: 125px;
         height: 25px;
-        font-size: 15px;
+        font-size: 11px;
     }
 
     .belowContainer {
-        height: 155px;
+        height: 100px;
         align-items: flex-start;
-        overflow: scroll;
-    }
-
-    .close-btn {
-        width: 9px;
-        height: 8.5px;
-        font-size: 9px;
+        overflow: scroll auto;
     }
 
     #lowerContain {
-        max-height: 82px;
-        background-color: blueviolet;
+        max-height: 100px;
     }
 
     .playable-edition {
         min-width: 65px;
         height: 12px;
-        font-size: 8px;
+        font-size: 10px;
     }
 
     #evolutions {
@@ -262,7 +217,7 @@
     }
 
     .evolution {
-        width: 85px;
+        width: 65px;
         margin-bottom: -8px;
     }
 
@@ -271,7 +226,7 @@
     }
 
     .evo-arrow {
-        width: 25px;
+        width: 20px;
     }
 
     .eevees-evos {
@@ -280,6 +235,6 @@
     }
 
     .poke-evo-name {
-        font-size: 18px;
+        font-size: 12px;
     }
 }

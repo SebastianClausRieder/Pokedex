@@ -14,7 +14,6 @@ let pokemonEvo2;
 let pokemonEvo3;
 let data;
 let additionalLabels = [];
-let hiddenContain;
 let pokeID;
 
 // Global Eevee
@@ -42,7 +41,11 @@ async function openPokedex(clickedPokemon) {
     pokemonStats.innerHTML = showPokemonTemp();
 
     evolutionDetermination();
-    statsRadarChart();
+    if (window.innerWidth <= 600) {
+        statsBarChart();
+    } else {
+        statsRadarChart();
+    }
     adjustElementToScreen('status-area');
 }
 
@@ -80,46 +83,59 @@ function showPokemonTemp() {
     `;
 }
 
+let editionOpen = false;
+let skillsOpen = false;
+
 function showPlayableEditons() {
-    hiddenContain = document.getElementById('show-contain');
-    hiddenContain.classList.add('d-show');
-    hiddenContain.innerHTML = ``;
-    hiddenContain.innerHTML = /*html */ `
-        <button class="close-btn" onclick="closeHiddenContain()">X</button>
-        <div id="lowerContain"></div>
-    `;
+    let hiddenContain = document.getElementById('show-contain');
+    if (!editionOpen) {
+        editionOpen = true;
+        hiddenContain.classList.add('d-show');
+        hiddenContain.innerHTML = ``;
+        hiddenContain.innerHTML = /*html */ `
+            <div id="lowerContain"></div>
+        `;
 
-    if (showPokemon['game_indices'].length > 0) {
+        if (showPokemon['game_indices'].length > 0) {
 
-        for (let pe = 0; pe < showPokemon['game_indices'].length; pe++) {
-            const playableEdition = showPokemon['game_indices'][pe]['version']['name'];
+            for (let pe = 0; pe < showPokemon['game_indices'].length; pe++) {
+                const playableEdition = showPokemon['game_indices'][pe]['version']['name'];
 
+                document.getElementById('lowerContain').innerHTML += /*html */ `
+                    <span class="playable-edition">${playableEdition}</span>
+                `;
+            }
+        } else {
             document.getElementById('lowerContain').innerHTML += /*html */ `
-                <span class="playable-edition">${playableEdition}</span>
-            `;
+                    <span class="playable-edition">Unfortunately, no editions are known.</span>
+                `;
         }
     } else {
-        document.getElementById('lowerContain').innerHTML += /*html */ `
-                <span class="playable-edition">Unfortunately, no editions are known.</span>
-            `;
+        editionOpen = false;
+        hiddenContain.classList.remove('d-show');
     }
 }
 
 function showSkills() {
-    hiddenContain = document.getElementById('show-contain');
-    hiddenContain.classList.add('d-show');
-    hiddenContain.innerHTML = ``;
-    hiddenContain.innerHTML = /*html */ `
-        <button class="close-btn" onclick="closeHiddenContain()">X</button>
-        <div id="lowerContain"></div>
-    `;
-
-    for (let ps = 0; ps < showPokemon['moves'].length; ps++) {
-        const skill = showPokemon['moves'][ps]['move']['name'];
-
-        document.getElementById('lowerContain').innerHTML += /*html */ `
-            <span class="playable-edition">${skill}</span>
+    let hiddenContain = document.getElementById('show-contain');
+    if (!skillsOpen) {
+        skillsOpen = true;
+        hiddenContain.classList.add('d-show');
+        hiddenContain.innerHTML = ``;
+        hiddenContain.innerHTML = /*html */ `
+            <div id="lowerContain"></div>
         `;
+
+        for (let ps = 0; ps < showPokemon['moves'].length; ps++) {
+            const skill = showPokemon['moves'][ps]['move']['name'];
+
+            document.getElementById('lowerContain').innerHTML += /*html */ `
+                <span class="playable-edition">${skill}</span>
+            `;
+        }
+    } else {
+        skillsOpen = false;
+        hiddenContain.classList.remove('d-show');
     }
 }
 
@@ -338,10 +354,6 @@ function goBack() {
     document.getElementById('pokemonStats').classList.remove('d-show');
 }
 
-function closeHiddenContain() {
-    hiddenContain.classList.remove('d-show');
-}
-
 // Format number open Pokedex
 
 function pokedexPokemonID(number) {
@@ -444,7 +456,7 @@ function adjustElementToScreen(elementId) {
 
 // Radar Chart in cooperation with ChatGPT
 
-function statsRadarChart() {
+async function statsRadarChart() {
 
     let options = {
         type: 'radar',
@@ -487,53 +499,63 @@ function statsRadarChart() {
     new Chart(ctx, options);
 
     Chart.defaults.font.size = 16;
-    Chart.defaults.font.weight = 700;
+    Chart.defaults.font.weight = 700;    
+    if (mode === 'light') {
+        Chart.defaults.color = '#000000';
+    } else {
+        Chart.defaults.color = '#ffffff';
+    }
 }
 
-function statsRadarChartResponsiv() {
-
+async function statsBarChart() {
     let options = {
-        type: 'radar',
+        type: 'bar', // Ändern Sie den Charttyp auf Bar
         data: {
             labels: ['HP', 'Attack', 'Defense', 'Speed', 'SP.Def', 'SP.Atk'],
             datasets: [{
                 label: 'Pokemon Stats',
                 data: [],
-                backgroundColor: 'rgba(101, 15, 181, 0.3)', // Hintergrundfarbe des Charts
-                borderColor: 'rgba(101, 15, 181, 0.3)', // Farbe der Linie
-                borderWidth: 0.5, // Dicke der Linie
+                backgroundColor: 'rgba(101, 15, 181, 0.6)', // Hintergrundfarbe der Balken
+                borderColor: 'rgba(101, 15, 181, 0.6)', // Randfarbe der Balken
+                borderWidth: 0.5, // Balkendicke
             }]
         },
         options: {
             scales: {
-                r: {
-                    angleLines: {
-                        display: false
-                    },
-                    suggestedMin: 1,
-                    pointLabels: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
                         font: {
                             size: 9,
-                            weight: 700
+                            weight: 700,
                         }
                     }
                 }
             }
         }
-    }
+    };
 
     for (let ps = 0; ps < 6; ps++) {
         options.data.datasets[0].data[ps] = showPokemon['stats'][ps]['base_stat'];
-        additionalLabels.push(`${showPokemon['stats'][ps]['base_stat']}`);
     }
 
-    options.data.labels = options.data.labels.map((label, index) => `${label}\n${additionalLabels[index]}`);
-
-    let ctx = document.getElementById('radarChart').getContext('2d');
+    let ctx = document.getElementById('radarChart').getContext('2d'); // Ändern Sie die ID auf Ihre Ziel-Div-ID
     new Chart(ctx, options);
 
     Chart.defaults.font.size = 9;
     Chart.defaults.font.weight = 700;
+    if (mode === 'light') {
+        Chart.defaults.color = '#000000';
+    } else {
+        Chart.defaults.color = '#ffffff';
+    }
 }
 
 // Undefine Global Variables

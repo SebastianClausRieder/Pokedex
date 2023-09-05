@@ -93,11 +93,11 @@ async function loadCorrentType(type) {
 
         await loadPokemon(pokemonByTypeID);
 
-        updatePokemonCounter(type);
+        updatePokemonCounterWith(type);
     }
 }
 
-function updatePokemonCounter(type) {
+function updatePokemonCounterWith(type) {
     document.getElementById('pokemonInArea').innerHTML = /*html */ `<span class="in-area">${aktuallLoadedPokemon} ${type} Pokemon Loaded</span>`;
 }
 
@@ -177,6 +177,11 @@ function nightDay() {
         nightDayMode2.style.backgroundImage = 'url(img/bg-darkmode.png)';
         navBG.classList.add('bg-dark');
         fontColor.classList.add('font-color-white');
+        if (window.innerWidth <= 600) {
+            statsBarChart();
+        } else {
+            statsRadarChart();
+        }
     }
 
     function applyLightMode() {
@@ -184,6 +189,11 @@ function nightDay() {
         nightDayMode2.style.backgroundImage = 'url(img/bg-lightmode.png)';
         navBG.classList.remove('bg-dark');
         fontColor.classList.remove('font-color-white');
+        if (window.innerWidth <= 600) {
+            statsBarChart();
+        } else {
+            statsRadarChart();
+        }
     }
 
     // Überprüfen und Umschalten des Modus
